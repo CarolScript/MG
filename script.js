@@ -199,4 +199,33 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("O compartilhamento não é suportado neste navegador.");
         }
     };
+
+    // Funções de escaneamento de código de barras
+    const scannerOverlay = document.getElementById('scanner');
+    const video = document.getElementById('video');
+
+    window.startBarcodeScan = function() {
+        scannerOverlay.style.display = 'flex'; // Exibe a tela do scanner
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(error => {
+                console.error("Erro ao acessar a câmera: ", error);
+                alert("Erro ao acessar a câmera.");
+                stopBarcodeScan();
+            });
+    };
+
+    window.stopBarcodeScan = function() {
+        scannerOverlay.style.display = 'none';
+
+        if (video.srcObject) {
+            const stream = video.srcObject;
+            stream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+        }
+    };
 });

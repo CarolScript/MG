@@ -24,20 +24,16 @@
         <div class="header-icons">
             <div id="notification-icon" class="notification-icon">
                 <i class="fas fa-bell" onclick="toggleNotifications()"></i>
-                <span id="notification-count" class="notification-count">2</span> <!-- Exemplo de contagem -->
+                <span id="notification-count" class="notification-count">2</span>
                 <div id="notification-menu" class="notification-menu">
                     <h4>Alertas de Validade</h4>
-                    <ul id="notification-list" class="alert-list">
-                        <!-- Alertas serão inseridos aqui -->
-                    </ul>
+                    <ul id="notification-list" class="alert-list"></ul>
                 </div>
             </div>
-            
             <div id="darkmode-toggle" class="darkmode-toggle" onclick="toggleDarkMode()">
-                <i class="fas fa-moon"></i> <!-- Ícone para modo escuro -->
+                <i id="darkmode-icon" class="fas fa-moon"></i>
             </div>
         </div>
-        
     </header>
 
     <nav id="top-nav">
@@ -52,8 +48,6 @@
         <!-- Dashboard -->
         <section id="dashboard" class="page active">
             <h2>Dashboard</h2>
-            <!-- Exibição dos alertas no dashboard -->
-          
             <div class="feedback-box">
                 <h3>Deixe sua Opinião</h3>
                 <p>Ajude-nos a melhorar com seu feedback!</p>
@@ -75,6 +69,7 @@
             </div>
         </section>
 
+        <!-- Relatórios -->
         <section id="relatorios" class="page">
             <h2>Relatórios de Vendas</h2>
             <div class="report-filter">
@@ -90,8 +85,6 @@
             </div>
             <div id="relatorioResultado" class="report-results"></div>
         </section>
-        
-        
 
         <!-- Alertas -->
         <section id="alertas" class="page">
@@ -114,30 +107,35 @@
         <!-- Cadastro de Produto -->
         <section id="cadastro" class="page">
             <h2>Cadastro de Produto</h2>
-            <form id="productForm">
+            <div class="form-container">
+                <label for="barcodeInput">Código de Barras:</label>
+                <div class="barcode-input">
+                    <input type="text" id="barcodeInput" placeholder="Insira o código de barras">
+                    <button onclick="startBarcodeScan()" class="btn-scan">📷 Escanear</button>
+                </div>
                 <label for="productName">Nome do Produto:</label>
                 <input type="text" id="productName" placeholder="Nome do Produto">
-                
                 <label for="productCategory">Categoria:</label>
                 <input type="text" id="productCategory" placeholder="Categoria do Produto">
-
                 <label for="productQuantity">Quantidade:</label>
                 <input type="number" id="productQuantity" placeholder="Quantidade em Estoque">
-
                 <label for="productPrice">Preço:</label>
                 <input type="number" id="productPrice" placeholder="Preço do Produto" step="0.01">
-
                 <label for="productExpiration">Data de Validade:</label>
                 <input type="date" id="productExpiration">
-
                 <label for="productSupplier">Fornecedor:</label>
                 <input type="text" id="productSupplier" placeholder="Fornecedor">
-
-                <button type="button" class="btn-secondary" onclick="saveProduct()">Cadastrar Produto</button>
-            </form>
+                <button onclick="saveProduct()" class="btn-submit">Cadastrar Produto</button>
+            </div>
+            <!-- Video para escanear código de barras -->
+            <div id="scanner" class="scanner-overlay">
+                <video id="video" autoplay></video>
+                <button onclick="stopBarcodeScan()" class="btn-close">X Fechar</button>
+            </div>
         </section>
     </main>
 
+    <!-- Modal de Feedback -->
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeFeedbackForm()">&times;</span>
@@ -145,8 +143,7 @@
                 <h3>Deixe sua Opinião</h3>
                 <p>Ajude-nos a melhorar com seu feedback!</p>
                 <textarea id="feedbackText" placeholder="Escreva seu feedback aqui"></textarea>
-                <button onclick="openFeedbackForm()">Deixe seu Feedback</button>
-
+                <button onclick="sendFeedback()" class="btn-submit">Enviar Feedback</button>
             </div>
         </div>
     </div>
