@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const notificationList = document.getElementById("notification-list");
     const icon = document.getElementById('darkmode-icon');
 
+    // Define limite para não permitir seleção de datas futuras no relatório
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("startDate").max = today;
+    document.getElementById("endDate").max = today;
+
     // Função para alternar o modo escuro
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
@@ -25,25 +30,32 @@ document.addEventListener("DOMContentLoaded", function() {
         notificationMenu.style.display = notificationMenu.style.display === "none" ? "block" : "none";
     };
 
-    // Atualiza lista de alertas de exemplo
+    // Atualiza lista de alertas para produtos com validade próxima
     const alertas = [
-        { produto: "Produto A", diasRestantes: 3 },
-        { produto: "Produto B", diasRestantes: 5 }
+        { produto: "Produto A", diasRestantes: 3, validade: "2024-12-01", estoque: 20 },
+        { produto: "Produto B", diasRestantes: 5, validade: "2024-11-15", estoque: 15 }
     ];
 
     function atualizarAlertas() {
         notificationList.innerHTML = "";
-        if (alertas.length > 0) {
-            alertas.forEach(alerta => {
+        const alertListPage = document.getElementById("alert-list-page"); // Lista na página de alertas
+        alertListPage.innerHTML = "";
+
+        const alertasProximos = alertas.filter(alerta => alerta.diasRestantes <= 7);
+
+        if (alertasProximos.length > 0) {
+            alertasProximos.forEach(alerta => {
                 const alertItem = document.createElement("li");
                 alertItem.classList.add("alert-item");
-                alertItem.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${alerta.produto} - ${alerta.diasRestantes} dias restantes`;
-                notificationList.appendChild(alertItem);
+                alertItem.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${alerta.produto} - ${alerta.diasRestantes} dias restantes - Validade: ${alerta.validade}, Estoque: ${alerta.estoque}`;
+                notificationList.appendChild(alertItem.cloneNode(true)); // Exibe no menu de notificação
+                alertListPage.appendChild(alertItem); // Exibe na página de alertas
             });
-            notificationCount.textContent = alertas.length;
+            notificationCount.textContent = alertasProximos.length;
             notificationCount.style.display = "block";
         } else {
             notificationCount.style.display = "none";
+            alertListPage.innerHTML = "<li class='alert-item'>Nenhum alerta de validade próximo.</li>";
         }
     }
 
@@ -53,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    atualizarAlertas();
 
     function goToPage(pageId) {
         pages.forEach(page => page.classList.remove("active"));
@@ -150,28 +163,28 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Função para gerar relatório
+    // Função para gerar o Relatório de Vendas
     window.gerarRelatorio = function() {
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
         const resultado = document.getElementById('relatorioResultado');
 
         if (startDate && endDate) {
-            // Exibir relatório específico com datas selecionadas
+            // Exibir relatório específico com dados de exemplo
             resultado.innerHTML = `
                 <h3>Relatório de Vendas</h3>
                 <p>Período: ${startDate} a ${endDate}</p>
                 <div class="report-card">
                     <span class="report-item-title">Produto A</span>
-                    <span>Quantidade: 50 - Total: R$500</span>
+                    <span>Quantidade em Estoque: 20 - Quantidade Vendida: 50 - Total: R$500</span>
                 </div>
                 <div class="report-card">
                     <span class="report-item-title">Produto B</span>
-                    <span>Quantidade: 30 - Total: R$300</span>
+                    <span>Quantidade em Estoque: 15 - Quantidade Vendida: 30 - Total: R$300</span>
                 </div>
                 <div class="report-card">
                     <span class="report-item-title">Produto C</span>
-                    <span>Quantidade: 20 - Total: R$200</span>
+                    <span>Quantidade em Estoque: 10 - Quantidade Vendida: 20 - Total: R$200</span>
                 </div>
                 <div class="report-buttons">
                     <button onclick="window.print()" class="btn-secondary">Imprimir Relatório</button>
@@ -179,26 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
             `;
         } else {
-            // Exibir relatório completo se nenhuma data for selecionada
-            resultado.innerHTML = `
-                <h3>Relatório de Vendas Completo</h3>
-                <div class="report-card">
-                    <span class="report-item-title">Produto A</span>
-                    <span>Quantidade: 50 - Total: R$500</span>
-                </div>
-                <div class="report-card">
-                    <span class="report-item-title">Produto B</span>
-                    <span>Quantidade: 30 - Total: R$300</span>
-                </div>
-                <div class="report-card">
-                    <span class="report-item-title">Produto C</span>
-                    <span>Quantidade: 20 - Total: R$200</span>
-                </div>
-                <div class="report-buttons">
-                    <button onclick="window.print()" class="btn-secondary">Imprimir Relatório</button>
-                    <button onclick="compartilharRelatorio()" class="btn-secondary">Compartilhar Relatório</button>
-                </div>
-            `;
+            resultado.innerHTML = `<p style="color: red;">Por favor, selecione as datas de início e fim para gerar o relatório.</p>`;
         }
     };
 
