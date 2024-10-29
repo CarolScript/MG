@@ -138,9 +138,13 @@
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeFeedbackForm()">&times;</span>
-            <h2>Envie seu Feedback</h2>
-            <textarea id="feedbackText" rows="4" placeholder="Escreva sua opinião aqui..."></textarea>
-            <button onclick="sendFeedback()" class="btn-secondary">Enviar Feedback</button>
+            <div class="feedback-box">
+                <h3>Deixe sua Opinião</h3>
+                <p>Ajude-nos a melhorar com seu feedback!</p>
+                <textarea id="feedbackText" placeholder="Escreva seu feedback aqui"></textarea>
+                <button onclick="openFeedbackForm()">Deixe seu Feedback</button>
+
+            </div>
         </div>
     </div>
 

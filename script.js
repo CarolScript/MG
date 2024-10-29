@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    
+
     // Função para alternar visibilidade do menu de notificações
     window.toggleNotifications = function() {
         notificationMenu.style.display = notificationMenu.style.display === "none" ? "block" : "none";
