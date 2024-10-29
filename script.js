@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if (feedbackText.trim()) {
             const emailParams = {
                 message: feedbackText,
-                email: "emillycarolinedossantosarruda@gmail.com"
+                email: "mercado.garibaldi1@gmail.com"
             };
 
-            emailjs.send("seu_service_id", "seu_template_id", emailParams)
+            emailjs.send("service_6vkuzju", "template_d9ery8j", emailParams)
                 .then(function(response) {
                     alert("Feedback enviado com sucesso!");
                     closeFeedbackForm();
