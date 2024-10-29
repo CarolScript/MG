@@ -1,6 +1,6 @@
 # Mercado Garibaldi - Sistema de Estoque Inteligente
 
-Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle e a previsão de demanda em supermercados. Este projeto foi criado durante a Univest Tech Experience 2024 por Emili, João Lucas e equipe.
+Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle e a previsão de demanda em supermercados. Este projeto foi criado durante a Univest Tech Experience 2024 por equipe Invest.
 
 ![Demonstração do Protótipo](./path/to/screenshot.png) <!-- Substitua pelo caminho da sua imagem -->
 
