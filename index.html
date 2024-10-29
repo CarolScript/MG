@@ -21,14 +21,23 @@
             <p class="tagline">Sistema de Estoque Inteligente e Moderno</p>
         </div>
         <!-- Ícone de notificações com menu dropdown -->
-        <div id="notification-icon" class="notification-icon">
-            <i class="fas fa-bell" onclick="toggleNotifications()"></i>
-            <span id="notification-count" class="notification-count">0</span>
-            <div id="notification-menu" class="notification-menu">
-                <h4>Alertas de Validade</h4>
-                <ul id="notification-list" class="alert-list"></ul>
+        <div class="header-icons">
+            <div id="notification-icon" class="notification-icon">
+                <i class="fas fa-bell" onclick="toggleNotifications()"></i>
+                <span id="notification-count" class="notification-count">2</span> <!-- Exemplo de contagem -->
+                <div id="notification-menu" class="notification-menu">
+                    <h4>Alertas de Validade</h4>
+                    <ul id="notification-list" class="alert-list">
+                        <!-- Alertas serão inseridos aqui -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="darkmode-toggle" class="darkmode-toggle" onclick="toggleDarkMode()">
+                <i class="fas fa-moon"></i> <!-- Ícone para modo escuro -->
             </div>
         </div>
+        
     </header>
 
     <nav id="top-nav">
