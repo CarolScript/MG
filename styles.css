@@ -165,6 +165,27 @@ body.dark-mode .darkmode-toggle {
     display: none;
 }
 
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .header-icons {
+        top: 10px; /* Ajusta a posição do grupo de ícones */
+        right: 10px;
+        gap: 5px; /* Reduz o espaço entre os ícones */
+    }
+
+    .notification-icon, .darkmode-toggle {
+        width: 30px; /* Reduz o tamanho dos ícones */
+        height: 30px;
+        font-size: 16px; /* Ajusta o tamanho da fonte dos ícones */
+    }
+
+    .notification-icon .notification-count {
+        font-size: 8px; /* Ajusta o tamanho da fonte do contador */
+        top: -2px;
+        right: -2px;
+    }
+
+
 /* Menu de notificações */
 .notification-menu {
     display: none;
