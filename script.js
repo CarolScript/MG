@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    atualizarAlertas();
 
     function goToPage(pageId) {
         pages.forEach(page => page.classList.remove("active"));
