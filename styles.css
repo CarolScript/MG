@@ -31,6 +31,7 @@ body.dark-mode {
     justify-content: center;
     text-align: center;
     color: #fff;
+    z-index: 1
 }
 
 /* Modo escuro para o cabeçalho */
@@ -76,14 +77,14 @@ button:hover, .btn-primary:hover, .btn-secondary:hover {
 body.dark-mode button, 
 body.dark-mode .btn-primary, 
 body.dark-mode .btn-secondary {
-    background-color: #555; /* Cinza mais claro */
+    background-color: #555;
     color: #e0e0e0;
 }
 
 body.dark-mode button:hover, 
 body.dark-mode .btn-primary:hover, 
 body.dark-mode .btn-secondary:hover {
-    background-color: #666; /* Efeito hover mais claro */
+    background-color: #666;
 }
 
 /* Navegação superior */
@@ -167,23 +168,25 @@ body.dark-mode .darkmode-toggle {
 /* Menu de notificações */
 .notification-menu {
     display: none;
-    position: absolute;
-    top: 50px;
-    right: 20px;
+    position: fixed; /* Mude de absolute para fixed */
+    top: 70px; /* Ajuste para garantir que fique abaixo do cabeçalho */
+    right: 20px; /* Alinhado com o ícone */
     background-color: #fff;
     color: #333;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 10px;
-    z-index: 1050; /* Z-index alto para garantir que apareça acima de outros elementos */
+    z-index: 10000; /* Certifique-se de que o z-index seja suficiente */
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
 }
 
-/* Modo escuro para menu de notificações */
 body.dark-mode .notification-menu {
     background-color: #1f1f1f;
     color: #e0e0e0;
 }
+
 
 .notification-menu h4 {
     margin-bottom: 10px;
@@ -191,6 +194,7 @@ body.dark-mode .notification-menu {
     font-size: 1em;
 }
 
+/* Lista de alertas */
 .alert-list {
     list-style: none;
     padding: 0;
