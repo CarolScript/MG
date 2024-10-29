@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
         
-        // Alterna entre os ícones de sol e lua
         if (document.body.classList.contains('dark-mode')) {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
@@ -21,22 +20,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    
-
     // Função para alternar visibilidade do menu de notificações
     window.toggleNotifications = function() {
         notificationMenu.style.display = notificationMenu.style.display === "none" ? "block" : "none";
     };
 
-    // Alertas de exemplo
+    // Atualiza lista de alertas de exemplo
     const alertas = [
         { produto: "Produto A", diasRestantes: 3 },
         { produto: "Produto B", diasRestantes: 5 }
     ];
 
     function atualizarAlertas() {
-        notificationList.innerHTML = ""; // Limpa a lista de notificações
-
+        notificationList.innerHTML = "";
         if (alertas.length > 0) {
             alertas.forEach(alerta => {
                 const alertItem = document.createElement("li");
@@ -44,15 +40,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 alertItem.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${alerta.produto} - ${alerta.diasRestantes} dias restantes`;
                 notificationList.appendChild(alertItem);
             });
-
             notificationCount.textContent = alertas.length;
-            notificationCount.style.display = "block"; // Mostra a bolinha vermelha
+            notificationCount.style.display = "block";
         } else {
             notificationCount.style.display = "none";
         }
     }
 
-    // Oculta o menu de notificações ao clicar fora
     document.addEventListener("click", function(event) {
         if (!notificationIcon.contains(event.target)) {
             notificationMenu.style.display = "none";
@@ -74,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Função para o feedback
+    // Função para abrir e fechar o modal de feedback
     window.openFeedbackForm = function() {
         document.getElementById("feedbackModal").style.display = "block";
     };
@@ -156,4 +150,53 @@ document.addEventListener("DOMContentLoaded", function() {
             scales: { y: { beginAtZero: true } }
         }
     });
+
+    // Função para gerar relatório
+    window.gerarRelatorio = function() {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const resultado = document.getElementById('relatorioResultado');
+
+        if (startDate && endDate) {
+            resultado.innerHTML = `
+                <h3>Relatório de Vendas</h3>
+                <p>Período: ${startDate} a ${endDate}</p>
+                <div class="report-card">
+                    <span class="report-item-title">Produto A</span>
+                    <span>Quantidade: 50 - Total: R$500</span>
+                </div>
+                <div class="report-card">
+                    <span class="report-item-title">Produto B</span>
+                    <span>Quantidade: 30 - Total: R$300</span>
+                </div>
+                <div class="report-card">
+                    <span class="report-item-title">Produto C</span>
+                    <span>Quantidade: 20 - Total: R$200</span>
+                </div>
+                <div class="report-buttons">
+                    <button onclick="window.print()" class="btn-secondary">Imprimir Relatório</button>
+                    <button onclick="compartilharRelatorio()" class="btn-secondary">Compartilhar Relatório</button>
+                </div>
+            `;
+        } else {
+            resultado.innerHTML = `<p style="color: red;">Por favor, selecione as datas de início e fim para gerar o relatório.</p>`;
+        }
+    };
+
+    // Função para compartilhar relatório
+    window.compartilharRelatorio = function() {
+        const resultado = document.getElementById('relatorioResultado').innerText;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Relatório de Vendas',
+                text: resultado,
+            }).then(() => {
+                console.log('Relatório compartilhado com sucesso!');
+            }).catch((error) => {
+                console.error('Erro ao compartilhar o relatório:', error);
+            });
+        } else {
+            alert("O compartilhamento não é suportado neste navegador.");
+        }
+    };
 });

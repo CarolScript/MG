@@ -78,16 +78,20 @@
         <section id="relatorios" class="page">
             <h2>Relatórios de Vendas</h2>
             <div class="report-filter">
-                <label for="startDate">Data Inicial:</label>
-                <input type="date" id="startDate" max="${new Date().toISOString().split('T')[0]}">
-                <label for="endDate">Data Final:</label>
-                <input type="date" id="endDate" max="${new Date().toISOString().split('T')[0]}">
-                <button class="btn-secondary" onclick="gerarRelatorio()">Gerar Relatório</button>
+                <div class="date-input">
+                    <label for="startDate">Data Inicial:</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="date-input">
+                    <label for="endDate">Data Final:</label>
+                    <input type="date" id="endDate">
+                </div>
+                <button class="btn-primary" onclick="gerarRelatorio()">Gerar Relatório</button>
             </div>
-            <div id="relatorioResultado" class="report-results">
-                <!-- Relatório gerado será exibido aqui -->
-            </div>
+            <div id="relatorioResultado" class="report-results"></div>
         </section>
+        
+        
 
         <!-- Alertas -->
         <section id="alertas" class="page">
