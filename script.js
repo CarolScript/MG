@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para alternar o modo escuro
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
-        
         if (document.body.classList.contains('dark-mode')) {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
@@ -77,155 +76,70 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("feedbackModal").style.display = "none";
     };
 
-    // Envio de feedback com EmailJS
-    window.sendFeedback = function() {
-        const feedbackText = document.getElementById("feedbackText").value;
+    // Função para salvar o produto no cadastro
+    window.saveProduct = function() {
+        const product = {
+            codigoBarras: document.getElementById('barcodeInput').value,
+            nome: document.getElementById('productName').value,
+            categoria: document.getElementById('productCategory').value,
+            quantidade: document.getElementById('productQuantity').value,
+            preco: document.getElementById('productPrice').value,
+            validade: document.getElementById('productExpiration').value,
+            dataCadastro: document.getElementById('productDate').value,
+            fornecedor: document.getElementById('productSupplier').value
+        };
 
+        console.log("Produto cadastrado:", product);
+        alert("Produto cadastrado com sucesso!");
+        
+        // Limpa os campos do formulário
+        document.getElementById('barcodeInput').value = '';
+        document.getElementById('productName').value = '';
+        document.getElementById('productCategory').value = '';
+        document.getElementById('productQuantity').value = '';
+        document.getElementById('productPrice').value = '';
+    // Função para registrar uma venda
+    window.registerSale = function() {
+        const sale = {
+            dataVenda: document.getElementById('saleDate').value,
+            produto: document.getElementById('saleProduct').value,
+            quantidadeVendida: document.getElementById('productQuantitySold').value,
+            precoVenda: document.getElementById('salePrice').value
+        };
         if (feedbackText.trim()) {
             const emailParams = {
                 message: feedbackText,
-                email: "mercado.garibaldi1@gmail.com"
-            };
+        console.log("Venda registrada:", sale);
+        alert("Venda registrada com sucesso!");
 
-            emailjs.send("service_6vkuzju", "template_d9ery8j", emailParams)
-                .then(function(response) {
-                    alert("Feedback enviado com sucesso!");
-                    closeFeedbackForm();
-                    document.getElementById("feedbackText").value = "";
-                }, function(error) {
-                    alert("Erro ao enviar feedback.");
-                    console.error("Erro:", error);
-                });
-        } else {
-            alert("Por favor, escreva seu feedback.");
-        }
+        // Limpa os campos do formulário
+        document.getElementById('saleDate').value = '';
+        document.getElementById('saleProduct').value = '';
+        document.getElementById('productQuantitySold').value = '';
+        document.getElementById('salePrice').value = '';
     };
 
-    // Gráficos do Dashboard
-    const salesCtx = document.getElementById('salesChart').getContext('2d');
-    new Chart(salesCtx, {
-        type: 'line',
-        data: {
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-            datasets: [{
-                label: 'Vendas Mensais',
-                data: [100, 150, 130, 200, 170, 210],
-                borderColor: '#2A9D8F',
-                backgroundColor: 'rgba(42, 157, 143, 0.2)',
-                fill: true
-            }]
-        },
-        options: { responsive: true }
-    });
+    // Função para atualizar lista de alertas
+    const alertas = [
+        { produto: "Produto A", diasRestantes: 3 },
+        { produto: "Produto B", diasRestantes: 5 }
+    ];
 
-    const stockCtx = document.getElementById('stockChart').getContext('2d');
-    new Chart(stockCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Bebidas', 'Laticínios', 'Grãos'],
-            datasets: [{
-                data: [30, 20, 50],
-                backgroundColor: ['#FFB74D', '#4FC3F7', '#81C784']
-            }]
-        },
-        options: { responsive: true }
-    });
-
-    const demandCtx = document.getElementById('demandChart').getContext('2d');
-    new Chart(demandCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-            datasets: [{
-                label: 'Demanda Prevista',
-                data: [100, 120, 90, 140, 110, 130],
-                backgroundColor: '#2A9D8F',
-                borderRadius: 5,
-                borderSkipped: false
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
-
-    // Função para gerar relatório
-    window.gerarRelatorio = function() {
-        const startDate = document.getElementById('startDate').value;
-        const endDate = document.getElementById('endDate').value;
-        const resultado = document.getElementById('relatorioResultado');
-
-        if (startDate && endDate) {
-            resultado.innerHTML = `
-                <h3>Relatório de Vendas</h3>
-                <p>Período: ${startDate} a ${endDate}</p>
-                <div class="report-card">
-                    <span class="report-item-title">Produto A</span>
-                    <span>Quantidade: 50 - Total: R$500</span>
-                </div>
-                <div class="report-card">
-                    <span class="report-item-title">Produto B</span>
-                    <span>Quantidade: 30 - Total: R$300</span>
-                </div>
-                <div class="report-card">
-                    <span class="report-item-title">Produto C</span>
-                    <span>Quantidade: 20 - Total: R$200</span>
-                </div>
-                <div class="report-buttons">
-                    <button onclick="window.print()" class="btn-secondary">Imprimir Relatório</button>
-                    <button onclick="compartilharRelatorio()" class="btn-secondary">Compartilhar Relatório</button>
-                </div>
-            `;
-        } else {
-            resultado.innerHTML = `<p style="color: red;">Por favor, selecione as datas de início e fim para gerar o relatório.</p>`;
-        }
-    };
-
-    // Função para compartilhar relatório
-    window.compartilharRelatorio = function() {
-        const resultado = document.getElementById('relatorioResultado').innerText;
-        if (navigator.share) {
-            navigator.share({
-                title: 'Relatório de Vendas',
-                text: resultado,
-            }).then(() => {
-                console.log('Relatório compartilhado com sucesso!');
-            }).catch((error) => {
-                console.error('Erro ao compartilhar o relatório:', error);
+    function atualizarAlertas() {
+        notificationList.innerHTML = "";
+        if (alertas.length > 0) {
+            alertas.forEach(alerta => {
+                const alertItem = document.createElement("li");
+                alertItem.classList.add("alert-item");
+                alertItem.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${alerta.produto} - ${alerta.diasRestantes} dias restantes`;
+                notificationList.appendChild(alertItem);
             });
-        } else {
-            alert("O compartilhamento não é suportado neste navegador.");
+            notificationCount.textContent = alertas.length;
+    document.addEventListener("click", function(event) {
+        if (!notificationIcon.contains(event.target)) {
+            notificationMenu.style.display = "none";
         }
-    };
+    });
 
-    // Funções de escaneamento de código de barras
-    const scannerOverlay = document.getElementById('scanner');
-    const video = document.getElementById('video');
-
-    window.startBarcodeScan = function() {
-        scannerOverlay.style.display = 'flex'; // Exibe a tela do scanner
-
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-            .then(stream => {
-                video.srcObject = stream;
-                video.play();
-            })
-            .catch(error => {
-                console.error("Erro ao acessar a câmera: ", error);
-                alert("Erro ao acessar a câmera.");
-                stopBarcodeScan();
-            });
-    };
-
-    window.stopBarcodeScan = function() {
-        scannerOverlay.style.display = 'none';
-
-        if (video.srcObject) {
-            const stream = video.srcObject;
-            stream.getTracks().forEach(track => track.stop());
-            video.srcObject = null;
-        }
-    };
+    atualizarAlertas();
 });
