@@ -40,8 +40,8 @@
         <a href="#relatorios" class="nav-link">Relatórios</a>
         <a href="#alertas" class="nav-link">Alertas</a>
         <a href="#previsao" class="nav-link">Previsão</a>
-        <a href="#cadastro" class="nav-link">Cadastro de Produto</a>
-        <a href="#venda" class="nav-link">Registrar Venda</a>
+        <a href="#cadastro" class="nav-link">Produto</a>
+        <a href="#venda" class="nav-link">Venda</a>
     </nav>
 
     <main>
@@ -96,7 +96,7 @@
                     <input type="text" id="validadeBarcodeInput" placeholder="Insira o código de barras">
                     <button onclick="startBarcodeScanForValidity()" class="btn-scan">📷 Escanear</button>
                 </div>
-                <button onclick="checkProductValidity()" class="btn-submit">Verificar Validade</button>
+                
                 <p id="validadeResult"></p>
             </div>
         </section>
@@ -182,19 +182,19 @@
     <!-- Scanner Overlay -->
     <div id="scanner" class="scanner-overlay">
         <video id="video" autoplay></video>
-        <button onclick="stopBarcodeScan()" class="btn-close">Fechar Scanner</button>
+        
     </div>
 
     <!-- Scanner para Verificar Validade -->
     <div id="scanner-validity" class="scanner-overlay">
         <video id="video-validity" autoplay></video>
-        <button onclick="stopBarcodeScanForValidity()" class="btn-close">Fechar Scanner</button>
+       
     </div>
 
     <footer class="footer">
         <div class="footer-content">
-            <p>Sistema desenvolvido por alunos durante a Univest Tech Experience 2024.</p>
-            <p>Equipe Invest.</p>
+            <p>Sistema desenvolvido por alunos durante a <a href="#">Univest Tech Experience 2024</a>.</p>
+            <p>Feito por: equipe Invest.</p>
         </div>
     </footer>
 

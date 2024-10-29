@@ -184,6 +184,21 @@ body.dark-mode .darkmode-toggle {
         top: -2px;
         right: -2px;
     }
+
+    /* Ajustes para menu e conteúdo */
+    .hero-section {
+        height: auto;
+        padding: 1em;
+    }
+    .hero-content {
+        max-width: 100%;
+    }
+    .logo {
+        font-size: 2em;
+    }
+    .tagline {
+        font-size: 1em;
+    }
 }
 
 /* Menu de notificações */
@@ -318,6 +333,14 @@ body.dark-mode .form-container {
     .date-input input {
         font-size: 1em;
         padding: 0.5em;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 1em;
     }
 }
 
