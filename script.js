@@ -2,6 +2,47 @@ document.addEventListener("DOMContentLoaded", function() {
     // Navegação entre páginas
     const navLinks = document.querySelectorAll(".nav-link");
     const pages = document.querySelectorAll(".page");
+    const notificationIcon = document.getElementById("notification-icon");
+    const notificationCount = document.getElementById("notification-count");
+    const notificationMenu = document.getElementById("notification-menu");
+    const notificationList = document.getElementById("notification-list");
+
+    const alertas = [
+        { produto: "Produto A", diasRestantes: 3 },
+        { produto: "Produto B", diasRestantes: 5 }
+    ];
+
+    function atualizarAlertas() {
+        notificationList.innerHTML = ""; // Limpa a lista de notificações
+
+        if (alertas.length > 0) {
+            alertas.forEach(alerta => {
+                const alertItem = document.createElement("li");
+                alertItem.classList.add("alert-item");
+                alertItem.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${alerta.produto} - ${alerta.diasRestantes} dias restantes`;
+                notificationList.appendChild(alertItem);
+            });
+
+            notificationCount.textContent = alertas.length;
+            notificationCount.style.display = "block"; // Mostra a bolinha vermelha
+        } else {
+            notificationCount.style.display = "none";
+        }
+    }
+
+    // Alterna a visibilidade do menu de notificações
+    window.toggleNotifications = function() {
+        notificationMenu.style.display = notificationMenu.style.display === "none" ? "block" : "none";
+    };
+
+    // Oculta o menu de notificações se clicar fora
+    document.addEventListener("click", function(event) {
+        if (!notificationIcon.contains(event.target)) {
+            notificationMenu.style.display = "none";
+        }
+    });
+
+    atualizarAlertas();
 
     function goToPage(pageId) {
         pages.forEach(page => page.classList.remove("active"));

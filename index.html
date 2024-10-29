@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("LRZqz-uqqovZo6wqH"); // Substitua "seu_user_id" pelo seu user_id do EmailJS
+            emailjs.init("LRZqz-uqqovZo6wqH");
         })();
     </script>
 </head>
@@ -19,6 +19,15 @@
         <div class="hero-content">
             <h1 class="logo">Mercado Garibaldi</h1>
             <p class="tagline">Sistema de Estoque Inteligente e Moderno</p>
+        </div>
+        <!-- Ícone de notificações com menu dropdown -->
+        <div id="notification-icon" class="notification-icon">
+            <i class="fas fa-bell" onclick="toggleNotifications()"></i>
+            <span id="notification-count" class="notification-count">0</span>
+            <div id="notification-menu" class="notification-menu">
+                <h4>Alertas de Validade</h4>
+                <ul id="notification-list" class="alert-list"></ul>
+            </div>
         </div>
     </header>
 
@@ -34,6 +43,11 @@
         <!-- Dashboard -->
         <section id="dashboard" class="page active">
             <h2>Dashboard</h2>
+            <!-- Exibição dos alertas no dashboard -->
+            <div id="dashboard-alerts" class="dashboard-alerts">
+                <h3>Notificações de Validade</h3>
+                <ul id="dashboard-alert-list" class="alert-list"></ul>
+            </div>
             <div class="feedback-box">
                 <h3>Deixe sua Opinião</h3>
                 <p>Ajude-nos a melhorar com seu feedback!</p>
@@ -60,9 +74,9 @@
             <h2>Relatórios de Vendas</h2>
             <div class="report-filter">
                 <label for="startDate">Data Inicial:</label>
-                <input type="date" id="startDate">
+                <input type="date" id="startDate" max="${new Date().toISOString().split('T')[0]}">
                 <label for="endDate">Data Final:</label>
-                <input type="date" id="endDate">
+                <input type="date" id="endDate" max="${new Date().toISOString().split('T')[0]}">
                 <button class="btn-secondary" onclick="gerarRelatorio()">Gerar Relatório</button>
             </div>
             <div id="relatorioResultado" class="report-results">
@@ -127,7 +141,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p>Sistema desenvolvido por alunos durante a <a href="https://www.sympla.com.br/evento/univest-tech-experience-2024/2666786?_gl=1*1g2mw93*_gcl_au*NTc2NzA2ODc4LjE3Mjc4MjEyNzQ.*_ga*Mzk5ODA4NjEyLjE3Mjc4MjEyNzQ.*_ga_KXH10SQTZF*MTcyNzg5MzEyNy4yLjEuMTcyNzg5MzMyOC41Ny4wLjE2NDIyMTc5NjM" target="_blank">Univest Tech Experience 2024</a>.</p>
-            <p>Feito por:  equipe Invest.</p>
+            <p>Feito por: equipe Invest.</p>
             <img src="path/to/logo_invest.png" alt="Logo Invest" class="footer-logo">
         </div>
     </footer>

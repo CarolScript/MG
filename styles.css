@@ -101,6 +101,70 @@ main {
     display: block;
 }
 
+
+.notification-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.notification-icon .fa-bell {
+    font-size: 1.5em;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 0.8em;
+    display: none; /* Oculto quando não houver notificações */
+}
+
+.notification-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    color: #333;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.notification-menu h4 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.alert-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alert-item {
+    padding: 8px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.alert-item i {
+    margin-right: 5px;
+}
+
 /* Dashboard e Gráficos */
 .dashboard-grid {
     display: grid;
