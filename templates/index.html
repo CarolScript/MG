@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatórios de Produtos e Vendas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Relatórios de Produtos e Vendas</h1>
+            <div class="buttons">
+                <button class="button is-primary" onclick="fetchProdutos()">Consultar Produtos</button>
+                <button class="button is-link" onclick="fetchVendas()">Consultar Vendas</button>
+                <button class="button is-info" onclick="fetchCategorias()">Consultar Categorias</button>
+            </div>
+            <div id="relatorio" class="content"></div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
