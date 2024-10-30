@@ -46,6 +46,14 @@ Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle
     ```bash
    Copiar código
    npm start
+
+### Passos para o BACK-END
+
+1. .\.venv\Scripts\activate
+
+2. python app.py
+
+3. Entrem no navegador e acesse [127.0.0.1/5000](http://127.0.0.1:5000/)
    
 
 🗂 Estrutura do Projeto
