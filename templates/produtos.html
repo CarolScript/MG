@@ -1,0 +1,13 @@
+<!-- templates/produtos.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="title">Produtos</h1>
+
+<div id="listaProdutos"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchProdutos();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,66 @@
+<!-- templates/relatorios.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="title">Relatórios</h1>
+
+<!-- Seleção de Relatórios -->
+<div class="tabs is-toggle is-toggle-rounded">
+    <ul>
+        <li class="is-active" data-tab="vendas"><a>Relatório de Vendas</a></li>
+        <li data-tab="previsao"><a>Previsão de Demanda</a></li>
+    </ul>
+</div>
+
+<!-- Conteúdo dos Relatórios -->
+<div id="conteudoRelatorios">
+    <!-- Relatório de Vendas -->
+    <div id="vendas" class="tab-content">
+        <div class="box">
+            <h2 class="subtitle">Relatório de Vendas por Período</h2>
+            <div class="field is-grouped">
+                <div class="control">
+                    <input class="input" type="date" id="data_inicio" max="{{ max_date }}" placeholder="Data Início">
+                </div>
+                <div class="control">
+                    <input class="input" type="date" id="data_fim" max="{{ max_date }}" placeholder="Data Fim">
+                </div>
+                <div class="control">
+                    <button class="button is-primary" onclick="fetchRelatorioVendas()">Gerar Relatório</button>
+                </div>
+            </div>
+            <div id="relatorioVendas"></div>
+        </div>
+    </div>
+
+    <!-- Previsão de Demanda -->
+    <div id="previsao" class="tab-content is-hidden">
+        <div class="box">
+            <h2 class="subtitle">Previsão de Demanda</h2>
+            <div class="field">
+                <label class="label">Selecione o Produto</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="selectProduto">
+                            <!-- Options serão carregadas via JS -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Período (dias)</label>
+                <div class="control">
+                    <input class="input" type="number" id="periodo" value="7" min="1">
+                </div>
+            </div>
+            <button class="button is-warning" onclick="fetchPrevisao()">Prever Demanda</button>
+            <div id="relatorioPrevisao"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        inicializarRelatorios();
+    });
+</script>
+{% endblock %}

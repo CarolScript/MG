@@ -49,11 +49,15 @@ Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle
 
 ### Passos para o BACK-END
 
-1. .\.venv\Scripts\activate
+1. python -m venv env
 
-2. python app.py
+2. env\Scripts\activate
 
-3. Entrem no navegador e acesse [127.0.0.1/5000](http://127.0.0.1:5000/)
+3. pip install -r requirements.txt
+
+4. python app.py
+
+5. Entrem no navegador e acesse [127.0.0.1/5000](http://127.0.0.1:5000/)
    
 
 🗂 Estrutura do Projeto

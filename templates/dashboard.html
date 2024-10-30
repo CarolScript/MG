@@ -1,0 +1,31 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="title">Dashboard</h1>
+
+<!-- Notificações -->
+<div id="notificacoes" class="notification is-warning">
+    <button class="delete" onclick="this.parentElement.style.display='none';"></button>
+    <strong>Notificações:</strong>
+    <ul id="lista_notificacoes"></ul>
+</div>
+
+<!-- Gráficos de Vendas Recentes -->
+<div class="columns">
+    <div class="column">
+        <h2 class="subtitle">Vendas Recentes</h2>
+        <canvas id="graficoVendas"></canvas>
+    </div>
+    <div class="column">
+        <h2 class="subtitle">Produtos em Baixa</h2>
+        <canvas id="graficoEstoqueBaixo"></canvas>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchNotificacoes();
+        renderGraficosDashboard();
+    });
+</script>
+{% endblock %}
