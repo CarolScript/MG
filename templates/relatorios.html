@@ -17,13 +17,25 @@
     <div id="vendas" class="tab-content">
         <div class="box">
             <h2 class="subtitle">Relatório de Vendas por Período</h2>
-            <div class="field is-grouped">
-                <div class="control">
-                    <input class="input" type="date" id="data_inicio" max="{{ max_date }}" placeholder="Data Início">
+            <div class="columns is-multiline">
+                <div class="column is-12-mobile is-6-tablet">
+                    <div class="field">
+                        <label class="label">Data Início</label>
+                        <div class="control">
+                            <input class="input" type="date" id="data_inicio" max="{{ max_date }}">
+                        </div>
+                    </div>
                 </div>
-                <div class="control">
-                    <input class="input" type="date" id="data_fim" max="{{ max_date }}" placeholder="Data Fim">
+                <div class="column is-12-mobile is-6-tablet">
+                    <div class="field">
+                        <label class="label">Data Fim</label>
+                        <div class="control">
+                            <input class="input" type="date" id="data_fim" max="{{ max_date }}">
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="field">
                 <div class="control">
                     <button class="button is-primary" onclick="fetchRelatorioVendas()">Gerar Relatório</button>
                 </div>
@@ -36,23 +48,33 @@
     <div id="previsao" class="tab-content is-hidden">
         <div class="box">
             <h2 class="subtitle">Previsão de Demanda</h2>
-            <div class="field">
-                <label class="label">Selecione o Produto</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select id="selectProduto">
-                            <!-- Options serão carregadas via JS -->
-                        </select>
+            <div class="columns is-multiline">
+                <div class="column is-12-mobile is-6-tablet">
+                    <div class="field">
+                        <label class="label">Selecione o Produto</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="selectProduto">
+                                    <!-- Options serão carregadas via JS -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-12-mobile is-6-tablet">
+                    <div class="field">
+                        <label class="label">Período (dias)</label>
+                        <div class="control">
+                            <input class="input" type="number" id="periodo" value="7" min="1">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="field">
-                <label class="label">Período (dias)</label>
                 <div class="control">
-                    <input class="input" type="number" id="periodo" value="7" min="1">
+                    <button class="button is-warning" onclick="fetchPrevisao()">Prever Demanda</button>
                 </div>
             </div>
-            <button class="button is-warning" onclick="fetchPrevisao()">Prever Demanda</button>
             <div id="relatorioPrevisao"></div>
         </div>
     </div>

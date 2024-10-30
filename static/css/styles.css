@@ -32,3 +32,24 @@
         flex-direction: column;
     }
 }
+
+/* Ajustar o tamanho dos gráficos em dispositivos móveis */
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Garantir que as tabelas sejam responsivas */
+.table-container {
+    overflow-x: auto;
+}
+
+/* Estilo dos cards de produtos */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Ajustar tabelas para serem responsivas */
+.table-container {
+    overflow-x: auto;
+}

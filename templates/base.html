@@ -1,9 +1,10 @@
-<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }} - Supermercado Garibaldi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
@@ -12,12 +13,12 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar is-primary">
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ url_for('dashboard') }}">
                 <strong>Supermercado Garibaldi</strong>
             </a>
-            <a role="button" class="navbar-burger" data-target="navbarMenu" aria-label="menu" aria-expanded="false">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -40,5 +41,32 @@
     </section>
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+    <!-- Script para o Menu Hambúrguer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Selecionar todos os elementos "navbar-burger"
+            const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Verificar se existem elementos navbar-burger
+            if (navbarBurgers.length > 0) {
+
+                // Adicionar evento de clique em cada um deles
+                navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+
+                        // Obter o alvo do "data-target"
+                        const target = el.dataset.target;
+                        const navbarMenu = document.getElementById(target);
+
+                        // Alternar a classe "is-active" no "navbar-burger" e no "navbar-menu"
+                        el.classList.toggle('is-active');
+                        navbarMenu.classList.toggle('is-active');
+
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -220,31 +220,56 @@ async function fetchProdutos() {
 function renderListaProdutos(produtos) {
     const listaDiv = document.getElementById('listaProdutos');
     let htmlContent = `
-        <table class="table is-striped is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Preço (R$)</th>
-                    <th>Estoque Atual</th>
-                    <th>Data de Validade</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="columns is-multiline">
     `;
+
     produtos.forEach(produto => {
         const dataValidade = new Date(produto.dataValidade).toLocaleDateString();
         htmlContent += `
-            <tr>
-                <td>${produto.nome}</td>
-                <td>${produto.categoriaId}</td>
-                <td>${produto.preco.toFixed(2)}</td>
-                <td>${produto.estoqueAtual}</td>
-                <td>${dataValidade}</td>
-            </tr>
+            <div class="column is-12-mobile is-6-tablet is-4-desktop">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title is-5">${produto.nome}</p>
+                        <p><strong>Categoria:</strong> ${produto.categoriaId}</p>
+                        <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                        <p><strong>Estoque Atual:</strong> ${produto.estoqueAtual}</p>
+                        <p><strong>Validade:</strong> ${dataValidade}</p>
+                    </div>
+                </div>
+            </div>
         `;
     });
-    htmlContent += '</tbody></table>';
+
+    htmlContent += `</div>`;
     listaDiv.innerHTML = htmlContent;
 }
 
+
+function renderRelatorioVendas(data) {
+    const relatorioDiv = document.getElementById('relatorioVendas');
+    let htmlContent = `
+        <div class="table-container">
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Nome do Produto</th>
+                        <th>Estoque Atual</th>
+                        <th>Quantidade Vendida</th>
+                        <th>Total de Vendas (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    data.forEach(item => {
+        htmlContent += `
+            <tr>
+                <td>${item.nome_produto}</td>
+                <td>${item.estoque_atual}</td>
+                <td>${item.quantidade_vendida}</td>
+                <td>${item.total_vendas.toFixed(2)}</td>
+            </tr>
+        `;
+    });
+    htmlContent += '</tbody></table></div>';
+    relatorioDiv.innerHTML = htmlContent;
+}
