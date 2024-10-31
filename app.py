@@ -35,17 +35,38 @@ def dashboard():
     return render_template('dashboard.html', max_date=max_date)
 
 
-# Rota para obter produtos
 @app.route('/api/produtos', methods=['GET'])
 def get_produtos():
     try:
+        search = request.args.get('search', default='', type=str)
+        categoria_id = request.args.get('categoria_id', default='', type=str)
+
         conn = get_db_connection()
-        produtos = conn.execute('SELECT * FROM produto').fetchall()
+
+        # Construir a consulta SQL dinamicamente
+        query = '''
+            SELECT p.*, c.nome AS categoria_nome
+            FROM produto p
+            LEFT JOIN categoria c ON p.categoriaId = c.id
+            WHERE 1=1
+        '''
+        params = []
+
+        if search:
+            query += ' AND p.nome LIKE ?'
+            params.append(f'%{search}%')
+
+        if categoria_id:
+            query += ' AND p.categoriaId = ?'
+            params.append(categoria_id)
+
+        produtos = conn.execute(query, params).fetchall()
         conn.close()
         return jsonify([dict(row) for row in produtos])
     except Exception as e:
         app.logger.error(f"Erro ao obter produtos: {e}")
         return jsonify({"error": "Erro ao obter produtos"}), 500
+
 
 
 # Rota para obter vendas
@@ -72,6 +93,7 @@ def get_categorias():
     except Exception as e:
         app.logger.error(f"Erro ao obter categorias: {e}")
         return jsonify({"error": "Erro ao obter categorias"}), 500
+
 
 
 def prever_demanda(produto_id):
@@ -314,6 +336,33 @@ def produtos_estoque_baixo():
     except Exception as e:
         app.logger.error(f"Erro ao obter produtos com estoque baixo: {e}")
         return jsonify({'erro': 'Erro ao obter produtos com estoque baixo'}), 500
+
+
+
+@app.route('/scanner')
+def scanner():
+    return render_template('scanner.html')
+
+
+@app.route('/api/produto/<produto_id>', methods=['GET'])
+def get_produto(produto_id):
+    try:
+        conn = get_db_connection()
+        query = '''
+            SELECT p.*, c.nome AS categoria_nome
+            FROM produto p
+            JOIN categoria c ON p.categoriaId = c.id
+            WHERE p.id = ?
+        '''
+        produto = conn.execute(query, (produto_id,)).fetchone()
+        conn.close()
+        if produto is None:
+            return jsonify({'erro': 'Produto não encontrado'}), 404
+        return jsonify(dict(produto))
+    except Exception as e:
+        app.logger.error(f"Erro ao obter produto: {e}")
+        return jsonify({'erro': 'Erro ao obter produto'}), 500
+
 
 
 if __name__ == '__main__':

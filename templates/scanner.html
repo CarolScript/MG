@@ -1,0 +1,78 @@
+<!-- scanner.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="title">Leitor de QR Code</h1>
+
+<!-- Botão para iniciar o scanner -->
+<button class="button is-primary" id="start-scanner">Iniciar Leitura de QR Code</button>
+
+<!-- Div onde o scanner será renderizado -->
+<div id="qr-reader" style="width: 300px; display: none; margin-top: 20px;"></div>
+<div id="qr-reader-results" style="margin-top: 20px;"></div>
+
+<script>
+    let html5QrcodeScanner;
+
+    document.getElementById('start-scanner').addEventListener('click', function() {
+        // Mostrar o div do scanner
+        document.getElementById('qr-reader').style.display = 'block';
+
+        // Iniciar o scanner
+        html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-reader", { fps: 10, qrbox: 250 });
+
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+        // Esconder o botão após iniciar o scanner
+        this.style.display = 'none';
+    });
+
+    function onScanSuccess(decodedText, decodedResult) {
+        // Handle on success condition with the decoded text or result.
+        console.log(`Código escaneado: ${decodedText}`);
+
+        // Parar a leitura após o escaneamento bem-sucedido
+        html5QrcodeScanner.clear();
+
+        // Esconder o div do scanner
+        document.getElementById('qr-reader').style.display = 'none';
+
+        // Redirecionar ou buscar informações do produto
+        fetchProdutoInfo(decodedText);
+    }
+
+    function onScanError(errorMessage) {
+        // Handle on error condition
+        // Normalmente não é necessário fazer nada aqui
+        // Você pode opcionalmente exibir mensagens de erro no console
+        // console.warn(`Erro na leitura: ${errorMessage}`);
+    }
+
+    // Função para buscar informações do produto
+    async function fetchProdutoInfo(produtoId) {
+        const response = await fetch(`/api/produto/${produtoId}`);
+        const data = await response.json();
+
+        if (data.erro) {
+            document.getElementById('qr-reader-results').innerHTML = `<div class="notification is-danger">${data.erro}</div>`;
+        } else {
+            // Renderizar as informações do produto
+            renderProdutoInfo(data);
+        }
+    }
+
+    function renderProdutoInfo(produto) {
+    let htmlContent = `
+        <h2 class="subtitle">Informações do Produto</h2>
+        <p><strong>Nome:</strong> ${produto.nome}</p>
+        <p><strong>Categoria:</strong> ${produto.categoria_nome}</p>
+        <p><strong>Preço:</strong> R$ ${parseFloat(produto.preco).toFixed(2)}</p>
+        <p><strong>Estoque Atual:</strong> ${produto.estoqueAtual}</p>
+        <p><strong>Data de Validade:</strong> ${new Date(produto.dataValidade).toLocaleDateString()}</p>
+    `;
+
+    // Exibir o conteúdo no div de resultados
+    document.getElementById('qr-reader-results').innerHTML = htmlContent;
+}
+</script>
+{% endblock %}

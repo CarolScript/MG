@@ -3,12 +3,49 @@
 {% block content %}
 <h1 class="title">Produtos</h1>
 
+<!-- Barra de Pesquisa e Filtros -->
+<div class="field has-addons">
+    <div class="control is-expanded">
+        <input class="input" type="text" id="searchInput" placeholder="Pesquisar produtos por nome">
+    </div>
+    <div class="control">
+        <button class="button is-primary" id="searchButton">
+            <span class="icon">
+                <i class="fas fa-search"></i>
+            </span>
+            <span>Pesquisar</span>
+        </button>
+    </div>
+</div>
+
+<div class="field">
+    <div class="control">
+        <div class="select is-fullwidth">
+            <select id="categoryFilter">
+                <option value="">Todas as Categorias</option>
+                <!-- As opções serão carregadas via JS -->
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Lista de Produtos -->
 <div id="listaProdutos"></div>
 
+<!-- Scripts -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        carregarCategorias();
         fetchProdutos();
+
+        // Event listeners para pesquisa e filtro
+        document.getElementById('searchButton').addEventListener('click', fetchProdutos);
+        document.getElementById('categoryFilter').addEventListener('change', fetchProdutos);
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                fetchProdutos();
+            }
+        });
     });
 </script>
-<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 {% endblock %}

@@ -51,7 +51,9 @@ Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle
 
 1. python -m venv env
 
-2. env\Scripts\activate
+2. env\Scripts\activate (no windows); source env/bin/activate (no mac)
+
+   2.1 Caso dê erro ao ativar script no windows, digite no powershell (como administrador) Set-ExecutionPolicy Unrestricted e habilite.
 
 3. pip install -r requirements.txt
 
