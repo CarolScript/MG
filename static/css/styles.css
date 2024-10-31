@@ -48,8 +48,3 @@ canvas {
 .card {
     margin-bottom: 20px;
 }
-
-/* Ajustar tabelas para serem responsivas */
-.table-container {
-    overflow-x: auto;
-}
