@@ -319,6 +319,7 @@ function renderListaProdutos(produtos) {
                 <div class="card">
                     <div class="card-content">
                         <p class="title is-5">${produto.nome}</p>
+
                         <p><strong>Categoria:</strong> ${categoriaNome}</p>
                         <p><strong>Preço:</strong> R$ ${parseFloat(produto.preco).toFixed(2)}</p>
                         <p><strong>Estoque Atual:</strong> ${produto.estoqueAtual}</p>
