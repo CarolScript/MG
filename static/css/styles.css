@@ -4,7 +4,6 @@
     color: white;
     padding: 15px 0;
     text-align: center;
-    position: relative;
 }
 
 .header-content {
@@ -262,63 +261,11 @@ body.dark-mode .feedback-box textarea {
     cursor: pointer;
 }
 
-
 .close:hover,
 .close:focus {
     color: black; /* Cor do texto no hover */
     text-decoration: none; /* Sem sublinhado */
     cursor: pointer; /* Mãozinha no hover */
-}
-
-/* Tabs */
-.tabs ul li.is-active a {
-    background-color: #2d3e50;
-    color: #fff;
-}
-
-/* Conteúdo das Tabs */
-.tab-content {
-    margin-top: 20px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .columns {
-        flex-direction: column;
-    }
-
-    .header-content {
-        text-align: center;
-    }
-}
-
-/* Ajustar o tamanho dos gráficos em dispositivos móveis */
-canvas {
-    width: 100% !important;
-    height: auto !important;
-}
-
-/* Garantir que as tabelas sejam responsivas */
-.table-container {
-    overflow-x: auto;
-}
-
-/* Estilo dos cards de produtos */
-.card {
-    margin-bottom: 20px;
-}
-
-/* Ajustar tabelas para serem responsivas */
-.table-container {
-    overflow-x: auto;
-}
-
-.modal {
-    display: none; /* Para ocultar até ser acionado */
-}
-
-.modal.is-active {
-    display: flex; /* Mostra o modal quando está ativo */
 }
 
 /* Estilo do modal de notificações */
@@ -328,8 +275,7 @@ canvas {
     padding: 1em;
 }
 
-
-
+/* Estilo de notificação */
 .notifications-list {
     list-style-type: none;
     padding: 0;
