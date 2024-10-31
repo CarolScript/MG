@@ -1,3 +1,4 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -29,6 +30,7 @@
                 <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
                 <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
+                <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
             </div>
         </div>
     </nav>
@@ -68,5 +70,7 @@
             }
         });
     </script>
+    <!-- Importar a biblioteca de QR Code -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </body>
 </html>

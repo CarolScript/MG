@@ -212,7 +212,19 @@ function renderError(errorMessage, elementId) {
 
 // Funções para Produtos
 async function fetchProdutos() {
-    const response = await fetch('/api/produtos');
+    const searchInput = document.getElementById('searchInput').value.trim();
+    const categoryFilter = document.getElementById('categoryFilter').value;
+
+    let url = '/api/produtos?';
+
+    if (searchInput) {
+        url += `search=${encodeURIComponent(searchInput)}&`;
+    }
+    if (categoryFilter) {
+        url += `categoria_id=${categoryFilter}&`;
+    }
+
+    const response = await fetch(url);
     const produtos = await response.json();
     renderListaProdutos(produtos);
 }
@@ -225,13 +237,14 @@ function renderListaProdutos(produtos) {
 
     produtos.forEach(produto => {
         const dataValidade = new Date(produto.dataValidade).toLocaleDateString();
+        const categoriaNome = produto.categoria_nome || 'Sem Categoria';
         htmlContent += `
             <div class="column is-12-mobile is-6-tablet is-4-desktop">
                 <div class="card">
                     <div class="card-content">
                         <p class="title is-5">${produto.nome}</p>
-                        <p><strong>Categoria:</strong> ${produto.categoriaId}</p>
-                        <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                        <p><strong>Categoria:</strong> ${categoriaNome}</p>
+                        <p><strong>Preço:</strong> R$ ${parseFloat(produto.preco).toFixed(2)}</p>
                         <p><strong>Estoque Atual:</strong> ${produto.estoqueAtual}</p>
                         <p><strong>Validade:</strong> ${dataValidade}</p>
                     </div>
@@ -272,4 +285,17 @@ function renderRelatorioVendas(data) {
     });
     htmlContent += '</tbody></table></div>';
     relatorioDiv.innerHTML = htmlContent;
+}
+
+async function carregarCategorias() {
+    const response = await fetch('/api/categorias');
+    const categorias = await response.json();
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    categorias.forEach(categoria => {
+        const option = document.createElement('option');
+        option.value = categoria.id;
+        option.textContent = categoria.nome;
+        categoryFilter.appendChild(option);
+    });
 }
