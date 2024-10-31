@@ -1,24 +1,100 @@
-// static/js/scripts.js
+// Função para alternar o modo escuro
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const modeButton = document.getElementById('toggle-dark-mode');
+    modeButton.querySelector('i').classList.toggle('fa-moon');
+    modeButton.querySelector('i').classList.toggle('fa-sun');
 
-// Funções para Dashboard
-async function fetchNotificacoes() {
-    const response = await fetch('/api/notificacoes');
-    const data = await response.json();
+    // Salva a preferência no localStorage
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+}
 
-    const listaNotificacoes = document.getElementById('lista_notificacoes');
-    listaNotificacoes.innerHTML = '';
-
-    if (data.alertas_validade && data.alertas_validade.length > 0) {
-        data.alertas_validade.forEach(alerta => {
-            const li = document.createElement('li');
-            li.textContent = `O produto "${alerta.nome}" está próximo da validade (${alerta.data_validade}). Estoque atual: ${alerta.estoqueAtual}.`;
-            listaNotificacoes.appendChild(li);
-        });
-    } else {
-        listaNotificacoes.innerHTML = '<li>Sem notificações no momento.</li>';
+// Inicializa o modo escuro com base na preferência do usuário
+function initializeDarkMode() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        const modeButton = document.getElementById('toggle-dark-mode');
+        modeButton.querySelector('i').classList.add('fa-sun');
     }
 }
 
+// Adiciona o evento de clique para o botão de modo escuro
+document.getElementById('toggle-dark-mode').addEventListener('click', toggleDarkMode);
+
+// Função para abrir o modal de notificações
+function abrirModalNotificacoes() {
+    document.getElementById('notification-modal').classList.add('is-active');
+    fetchNotificacoes(); // Carrega as notificações ao abrir o modal
+}
+
+// Fecha o modal de notificações
+function fecharModalNotificacoes() {
+    document.getElementById('notification-modal').classList.remove('is-active');
+}
+
+// Evento de clique para o ícone de notificações
+document.getElementById('notificacoesIcone').addEventListener('click', abrirModalNotificacoes);
+
+// Funções para exibir notificações no painel do dashboard e no modal
+async function fetchNotificacoes() {
+    try {
+        const response = await fetch('/api/notificacoes');
+        const data = await response.json();
+
+        // Elementos das notificações
+        const modalNotificationsList = document.getElementById('modal-notifications-list');
+        const listaNotificacoesDashboard = document.getElementById('lista_notificacoes_dashboard');
+
+        // Verifique se os elementos existem
+        if (!modalNotificationsList || !listaNotificacoesDashboard) {
+            console.error("Elementos de notificações não encontrados no DOM.");
+            return;
+        }
+        
+        // Limpa o conteúdo das listas antes de adicionar novas notificações
+        modalNotificationsList.innerHTML = '';
+        listaNotificacoesDashboard.innerHTML = '';
+
+        // Verifica se há notificações
+        if (data.alertas_validade && data.alertas_validade.length > 0) {
+            data.alertas_validade.forEach(alerta => {
+                // Cria o item de notificação com o ícone e o texto
+                const li = document.createElement('li');
+                li.classList.add('notification-item');
+                li.innerHTML = `<i class="fas fa-exclamation-circle"></i><span class="notification-text">O produto "${alerta.nome}" está próximo da validade (${alerta.data_validade}). Estoque atual: ${alerta.estoqueAtual}.</span>`;
+
+                // Adiciona a notificação tanto no modal quanto no painel do dashboard
+                modalNotificationsList.appendChild(li.cloneNode(true));
+                listaNotificacoesDashboard.appendChild(li.cloneNode(true));
+            });
+        } else {
+            modalNotificationsList.innerHTML = '<li>Sem notificações no momento.</li>';
+            listaNotificacoesDashboard.innerHTML = '<li>Sem notificações no momento.</li>';
+        }
+
+        // Atualiza o contador de notificações
+        const notificationCount = document.getElementById('notification-count');
+        const totalNotifications = data.alertas_validade.length;
+        notificationCount.textContent = totalNotifications;
+
+        // Salva a contagem de notificações no localStorage
+        localStorage.setItem('notificationCount', totalNotifications);
+    } catch (error) {
+        console.error("Erro ao buscar notificações:", error);
+    }
+}
+
+// Chama a função de notificações ao carregar cada página
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDarkMode(); // Verifica e aplica o modo escuro
+    fetchNotificacoes(); // Carrega as notificações ao abrir a página
+    const savedNotificationCount = localStorage.getItem('notificationCount');
+    document.getElementById('notification-count').textContent = savedNotificationCount || 0; // Atualiza o contador
+});
+
+// Funções para carregar gráficos no dashboard
 async function renderGraficosDashboard() {
     // Exemplo de gráfico de vendas recentes
     const response = await fetch('/api/vendas_recentes');
@@ -56,7 +132,7 @@ async function renderGraficosDashboard() {
     });
 }
 
-// Funções para Relatórios
+// Funções para inicializar relatórios
 function inicializarRelatorios() {
     const tabs = document.querySelectorAll('.tabs ul li');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -244,32 +320,44 @@ function renderListaProdutos(produtos) {
     listaDiv.innerHTML = htmlContent;
 }
 
-
-function renderRelatorioVendas(data) {
-    const relatorioDiv = document.getElementById('relatorioVendas');
-    let htmlContent = `
-        <div class="table-container">
-            <table class="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Nome do Produto</th>
-                        <th>Estoque Atual</th>
-                        <th>Quantidade Vendida</th>
-                        <th>Total de Vendas (R$)</th>
-                    </tr>
-                </thead>
-                <tbody>
-    `;
-    data.forEach(item => {
-        htmlContent += `
-            <tr>
-                <td>${item.nome_produto}</td>
-                <td>${item.estoque_atual}</td>
-                <td>${item.quantidade_vendida}</td>
-                <td>${item.total_vendas.toFixed(2)}</td>
-            </tr>
-        `;
-    });
-    htmlContent += '</tbody></table></div>';
-    relatorioDiv.innerHTML = htmlContent;
+function renderError(errorMessage, elementId) {
+    const relatorioDiv = document.getElementById(elementId);
+    relatorioDiv.innerHTML = `<div class="notification is-danger">${errorMessage}</div>`;
 }
+
+// Funções de Feedback
+window.openFeedbackForm = function() {
+    document.getElementById("feedbackModal").style.display = "block";
+};
+
+window.closeFeedbackForm = function() {
+    document.getElementById("feedbackModal").style.display = "none";
+};
+
+// Envio de feedback com EmailJS
+window.sendFeedback = function() {
+    const feedbackText = document.getElementById("feedbackText").value;
+
+    if (feedbackText.trim()) {
+        const emailParams = {
+            message: feedbackText,
+            email: "mercado.garibaldi1@gmail.com"
+        };
+
+        emailjs.send("service_6vkuzju", "template_d9ery8j", emailParams)
+            .then(function(response) {
+                alert("Feedback enviado com sucesso!");
+                closeFeedbackForm();
+                document.getElementById("feedbackText").value = "";
+            }, function(error) {
+                alert("Erro ao enviar feedback.");
+                console.error("Erro:", error);
+            });
+    } else {
+        alert("Por favor, escreva seu feedback.");
+    }
+};
+
+
+// Adiciona o evento de clique para fechar o modal de notificações
+document.querySelector('.modal-close').addEventListener('click', fecharModalNotificacoes);
