@@ -27,10 +27,11 @@ Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle
 - **Email para Feedback:** Integração com EmailJS
 - **Inteligência Artificial:** Algoritmos de Machine Learning (simulação para previsão de demanda)
 
-## 📦 Instalação e Configuração
+📦 **Instalação e Configuração**
 
 ### Pré-requisitos
-- [Node.js](https://nodejs.org/) - Para executar o projeto localmente.
+- **Python 3.x**: Certifique-se de que o Python esteja instalado na sua máquina.
+- **pip**: O gerenciador de pacotes do Python para instalar dependências.
 
 ### Passos para instalação
 1. Clone o repositório:
@@ -65,12 +66,26 @@ Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle
 🗂 Estrutura do Projeto
 
 
-├── public
-│   ├── index.html        # Página principal
-│   ├── styles.css        # Estilos principais
-│   └── script.js         # Código JavaScript principal
-├── README.md             # Este arquivo de documentação
-└── images                # Pasta com as imagens do projeto
+├── instance
+│   └── database.db      # Banco de dados do projeto
+├── path\ to
+│   ├── dashboard_screenshot.png
+│   ├── report_screenshot.png
+│   └── screenshot.png
+├── static
+│   ├── css
+│   │   └── styles.css    # Estilos principais
+│   ├── js
+│   └── qrCodes
+│       └── logo_invest.png # Logo do Invest
+├── templates
+│   ├── base.html         # Estrutura básica do HTML
+│   ├── dashboard.html     # Página do dashboard
+│   ├── produtos.html      # Página de produtos
+│   ├── relatorios.html     # Página de relatórios
+│   └── scanner.html       # Página do scanner
+├── README.md              # Este arquivo de documentação
+└── app.py                 # Arquivo principal do aplicativo
 
 🤝 Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir Issues ou Pull Requests.
