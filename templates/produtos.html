@@ -1,6 +1,7 @@
 <!-- templates/produtos.html -->
 {% extends 'base.html' %}
 {% block content %}
+
 <h1 class="title">Produtos</h1>
 
 <!-- Barra de Pesquisa e Filtros -->
@@ -37,6 +38,21 @@
     document.addEventListener('DOMContentLoaded', () => {
         carregarCategorias();
         fetchProdutos();
+        initializeDarkMode(); // Verifica e aplica o modo escuro
+    fetchNotificacoes();
+
+    <!-- Modal de Notificações -->
+<div id="notification-modal" class="modal">
+    <div class="modal-background" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="title is-4">📢 Notificações</h2>
+            <ul id="modal-notifications-list" class="notifications-list"></ul>
+        </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></button>
+</div>
+
 
         // Event listeners para pesquisa e filtro
         document.getElementById('searchButton').addEventListener('click', fetchProdutos);

@@ -21,7 +21,7 @@
         })();
     </script>
 </head>
-<body>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
     <!-- Cabeçalho -->
     <header class="header">
         <div class="header-content">
@@ -64,7 +64,7 @@
     </nav>
 
     <!-- Main Content -->
-    <section class="section">
+    <section class="section" style="flex: 1;">
         <div class="container">
             {% block content %}
             {% endblock %}
@@ -72,29 +72,23 @@
     </section>
 
     <!-- Feedback Container (acima do Footer) -->
-    <!-- Feedback Container (acima do Footer) -->
-<!-- Feedback Container (acima do Footer) -->
-<div class="feedback-box">
-    <h3>Deixe sua Opinião</h3>
-    <p>Ajude-nos a melhorar com seu feedback!</p>
-    <button onclick="openFeedbackForm()" class="btn-secondary">Enviar Feedback</button>
-</div>
+    <div class="feedback-box">
+        <h3>Deixe sua Opinião</h3>
+        <p>Ajude-nos a melhorar com seu feedback!</p>
+        <button onclick="openFeedbackForm()" class="btn-secondary">Enviar Feedback</button>
+    </div>
 
-<!-- Modal de Feedback -->
-<div id="feedbackModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeFeedbackForm()">&times;</span>
-        <div class="feedback-box">
-            <h3>Deixe sua Opinião</h3>
-            <textarea id="feedbackText" placeholder="Escreva seu feedback aqui"></textarea>
-            <button onclick="sendFeedback()" class="btn-secondary">Enviar Feedback</button>
+    <!-- Modal de Feedback -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeFeedbackForm()">&times;</span>
+            <div class="feedback-box">
+                <h3>Deixe sua Opinião</h3>
+                <textarea id="feedbackText" placeholder="Escreva seu feedback aqui"></textarea>
+                <button onclick="sendFeedback()" class="btn-secondary">Enviar Feedback</button>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-
 
     <!-- Modal de Notificações -->
     <div id="notification-modal" class="modal">
@@ -102,7 +96,7 @@
         <div class="modal-content">
             <div class="box">
                 <h2 class="title is-4">📢 Notificações</h2>
-                <ul id="modal-notifications-list" class="notifications-list"></ul>
+                <ul id="modal-notifications-list" class="notifications-list"></ul> <!-- Aqui -->
             </div>
         </div>
         <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></button>

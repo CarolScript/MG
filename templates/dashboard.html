@@ -1,6 +1,7 @@
 <!-- templates/dashboard.html -->
 {% extends 'base.html' %}
 {% block content %}
+
 <h1 class="title">Dashboard</h1>
 
 <!-- Notificações -->
@@ -32,6 +33,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         fetchNotificacoes();
         renderGraficosDashboard();
+        initializeDarkMode(); // Verifica e aplica o modo escuro
+
     });
 </script>
 {% endblock %}
