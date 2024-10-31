@@ -12,12 +12,12 @@
 
 .navbar .navbar-item:hover,
 .navbar .navbar-link:hover {
-    background-color: #1a252f;
+    background-color: #00d1b2;
 }
 
 /* Tabs */
 .tabs ul li.is-active a {
-    background-color: #2d3e50;
+    background-color: #00d1b2;
     color: #fff;
 }
 
