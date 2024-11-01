@@ -36,6 +36,11 @@
     gap: 10px;
 }
 
+body.dark-mode strong {
+    color: #fffdfd;
+    font-weight: 700;
+}
+
 .icon {
     position: relative;
 }
@@ -158,9 +163,7 @@
     color: #ffffff;
 }
 
-.navbar .navbar-link:hover {
-    background-color: #1a252f;
-}
+
 
 /* Estilos para o menu */
 .navbar-menu {
@@ -190,7 +193,17 @@
 .navbar-menu.is-active .closeMenu {
     display: block;
 }
+/* Menu Hambúrguer */
+.navbar-burger {
+    display: block;
+    color: #ffffff;
+}
 
+.navbar-burger.is-hidden {
+    display: none;
+}
+
+/* Responsividade */
 @media (min-width: 1024px) {
     .navbar-menu {
         display: flex !important;
@@ -202,6 +215,44 @@
         display: none !important;
     }
 }
+
+/* Modo escuro para o fundo do relatório e texto da tabela */
+body.dark-mode .box {
+    background-color: #1a1a1a; /* Fundo preto para o contêiner */
+    color: #ffffff; /* Texto branco no contêiner */
+}
+
+body.dark-mode table {
+    background-color: #1a1a1a; /* Fundo preto para a tabela */
+    color: #ffffff; /* Texto branco para a tabela */
+    border-color: #444; /* Cor de borda mais escura */
+}
+
+body.dark-mode th,
+body.dark-mode td {
+    background-color: #1a1a1a; /* Fundo preto para células */
+    color: #ffffff; /* Texto branco nas células */
+    border-color: #444; /* Borda escura entre as células */
+}
+
+body.dark-mode th {
+    background-color: #333; /* Fundo mais escuro para o cabeçalho */
+}
+
+body.dark-mode .table-container {
+    background-color: #1a1a1a; /* Fundo preto para o contêiner da tabela */
+}
+
+/* Se houver qualquer sobreposição de cor, forçando o fundo */
+body.dark-mode tr:nth-child(even) td {
+    background-color: #2a2a2a; /* Fundo alternado para linhas pares */
+}
+
+body.dark-mode tr:nth-child(odd) td {
+    background-color: #1a1a1a; /* Fundo alternado para linhas ímpares */
+}
+
+
 
 
 /* Estilo dos Botões */
