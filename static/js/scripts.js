@@ -471,15 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-// Adiciona eventos de clique para abrir e fechar o menu
-document.getElementById("navbarBurger").addEventListener("click", openMenu);
-document.getElementById("closeMenuButton").addEventListener("click", closeMenu);
-
-
-
 // Funções de Feedback
 window.openFeedbackForm = function() {
     document.getElementById("feedbackModal").style.display = "block";
