@@ -47,22 +47,27 @@
    <!-- Navbar -->
     <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-container">
-            <!-- Menu Hamburger -->
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-            
-            <!-- Menu Items -->
-            <div id="navbarMenu" class="navbar-menu">
-                <span class="closeMenu" onclick="closeMenu()">&times;</span>
-                <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
-                <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
-                <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
-                <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
-            </div>
+       <!-- Botão de menu hamburguer -->
+<!-- Botão de menu hamburguer -->
+<!-- Botão do menu hamburguer -->
+<!-- Botão do menu hamburguer -->
+<a role="button" id="navbarBurger" class="navbar-burger" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+</a>
+
+<!-- Menu com o botão de fechar -->
+<div id="navbarMenu" class="navbar-menu">
+    <span id="closeMenuButton" onclick="closeMenu()">&times;</span>
+    <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
+    <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
+    <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
+</div>
+
+
+
         </div>
     </nav>
 

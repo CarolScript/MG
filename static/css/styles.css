@@ -16,17 +16,12 @@
     margin: 0 auto;
 }
 
-.header .title {
-    color: white;
-    margin-bottom: 5px;
-}
-
+.header .title,
 .header p {
     color: #d0e6f2;
-    font-size: 1.1em;
 }
 
-/* Estilo de Notificação e Modo Escuro no Cabeçalho */
+/* Ícones de notificação e modo escuro */
 .header-icons {
     position: absolute;
     top: 10px;
@@ -51,16 +46,16 @@
 /* Navbar */
 .navbar {
     background-color: #2d3e50;
-    margin-bottom: 0; /* Remove margens para evitar sobreposição */
-    padding: 10px 0; /* Adiciona espaçamento interno */
+    margin-bottom: 0;
+    padding: 10px 0;
 }
 
 .navbar-container {
-    max-width: 1200px; /* Limita a largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o container da navbar */
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Espaçamento entre itens */
-    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-menu {
@@ -86,50 +81,64 @@
     cursor: pointer;
 }
 
+/* Botão "X" para fechar o menu */
+/* Ajuste do botão "X" para aparecer acima dos itens do menu */
+#closeMenuButton {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10; /* Garantir que o botão "X" fique acima dos itens do menu */
+}
+
+/* Estilo para o menu em telas pequenas */
 
 
+
+/* Modo Escuro */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #a0aec0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer,
+body.dark-mode .header {
+    background-color: #2d3748;
+}
+
+body.dark-mode .navbar-item,
+body.dark-mode .header .title,
+body.dark-mode .header p {
+    color: #cbd5e0;
+}
+
+#closeMenuButton {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 15px; /* Aumente o espaçamento */
+    right: 15px; /* Aumente o espaçamento */
+    z-index: 10; /* Mantém o botão "X" acima dos itens do menu */
+}
+
+/* Responsividade */
 @media (max-width: 1024px) {
-    .header-content {
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-        gap: 10px;
-    }
-
     .navbar-burger {
         display: block;
         color: #ffffff;
         position: absolute;
         right: 20px;
-        top: 1px; /* Ajuste a posição vertical para centralizar */
+        top: 1px;
     }
-
-    /* Ícone de "X" ao abrir o menu */
-    .navbar-burger.is-active span {
-        display: none; /* Esconde as barras do hambúrguer */
-    }
-
-    .navbar-burger.is-active::before {
-        content: "\f00d"; /* Ícone de 'X' para o botão ativo */
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        color: #ffffff; /* Cor branca */
-    }
-
-    .navbar-container {
-        justify-content: flex-start;
-    }
-
     .navbar-menu {
         display: none;
-        background-color: #2d3e50; /* Fundo escuro para o menu ao abrir */
-
-        
-    }
-    
-
-    .navbar-menu.is-active {
-        display: flex;
+        background-color: #2d3e50;
         flex-direction: column;
         position: absolute;
         top: 0;
@@ -138,174 +147,90 @@
         height: auto;
         padding: 20px;
         text-align: center;
+        z-index: 1;
     }
 
-    
-
-    .navbar-item {
-        color: #ffffff;
-        padding: 15px;
+    .navbar-menu.is-active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #2d3e50;
+        padding: 50px 20px 20px; /* Espaço adicional no topo para o botão "X" */
         text-align: center;
+        z-index: 1;
     }
-}
-
-/* Estilo dos Botões */
-.button,
-.button.is-primary,
-.button.is-warning {
-    background-color: #007bff; /* Cor dos botões */
-    color: white; /* Texto branco */
-    border: none; /* Remove bordas */
-}
-
-.button:hover,
-.button.is-primary:hover,
-.button.is-warning:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-}
-
-/* Card de Produtos */
-/* Estilo dos cards de produtos */
-.card {
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #f0f0f0 0%, #d9d9d9 100%); /* Gradiente leve */
-    color: #333; /* Texto em cinza escuro */
-    border-radius: 8px; /* Cantos arredondados para um visual mais suave */
-    padding: 15px; /* Espaçamento interno para conforto visual */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve para destacar os cards */
-}
-
-body.dark-mode .card {
-    background: linear-gradient(135deg, #4b4b4b 0%, #666666 100%); /* Gradiente escuro no modo escuro */
-    color: #f0f0f0; /* Texto claro para contraste */
-}
-
-/* Estilizando o texto dos cards no modo escuro */
-body.dark-mode .card h2,
-body.dark-mode .card p {
-    color: #f0f0f0;
-    strong {
-        color: #f5eeee;
-        font-weight: 700;
-    } /* Fazendo o texto ficar branco */
-}
-
-.box {
-    background: linear-gradient(135deg, #f0f0f0 0%, #d9d9d9 100%);
-    color: #333; 
-    border-radius: 6px;
-    box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
-    color: #4a4a4a;
-    display: block;
-    padding: 1.25rem;
-}
-
-body.dark-mode .box {
-    background: linear-gradient(135deg, #4b4b4b 0%, #666666 100%); /* Gradiente escuro no modo escuro */
-    color: #f0f0f0; /* Texto claro para contraste */
-}
-
-/* Estilizando o texto dos cards no modo escuro */
-body.dark-mode .box h2,
-body.dark-mode .box p {
-    color: #f0f0f0;
-    .label {
-        color: #f5eeee;
-        display: block;
-        font-size: 1rem;
-        font-weight: 700;
-    }
-}
-
-/* Rótulos no modo escuro */
-body.dark-mode label {
-    color: white; /* Cor do texto do rótulo em branco */
-}
-
-body.dark-mode .tabs a {
-    
-    border-bottom-color: #dbdbdb;
-    
-    color: #ebe0e0;
+   
    
 }
 
-body.dark-mode input[type="date"],
-body.dark-mode input[type="text"] {
-    background-color: #333; /* Fundo escuro para os campos */
-    color: #f0f0f0; /* Texto em branco para contraste */
-    border: 1px solid #444; /* Borda sutil para os campos */
+@media (min-width: 1025px) {
+    #navbarMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2d3e50;
+    }
+
+    #navbarBurger,
+    #closeMenuButton {
+        display: none;
+    }
 }
 
-
-
-body.dark-mode  .select select {
-    background-color: #333; /* Fundo escuro para os campos */
-    color: #f0f0f0; /* Texto em branco para contraste */
-    border: 1px solid #444; /* Borda sutil para os campos */
+/* Remover duplicações e consolidar estilos */
+.footer,
+.notification-panel,
+.notification-header {
+    background-color: #2d3e50;
+    color: #cbd5e0;
+    padding: 10px;
+    text-align: center;
 }
 
-
-body.dark-mode  .input {
-    background-color: #333; /* Fundo escuro para os campos */
-    color: #f0f0f0; /* Texto em branco para contraste */
-    border: 1px solid #444; /* Borda sutil para os campos */
+.button,
+.btn-secondary {
+    background-color: #007bff;
+    color: white;
+    border: none;
 }
 
-/* Gráficos */
-body.dark-mode .chartjs-render-monitor {
-    background-color: #2c2f33; /* Fundo do gráfico em modo escuro */
+.button:hover,
+.btn-secondary:hover {
+    background-color: #0056b3;
 }
 
-body.dark-mode canvas {
-    background-color: #ced0d3; /* Fundo do canvas em modo escuro */
-}
-
-body.dark-mode .chartjs-legend {
-    color: white; /* Cor da legenda */
-}
-
-body.dark-mode .chartjs-ticks,
-body.dark-mode .chartjs-axis {
-    color: white; /* Cor dos eixos e ticks */
-}
-
-body.dark-mode .chartjs-grid {
-    color: rgba(255, 255, 255, 0.3); /* Cor da grade */
-}
-
-/* Botões */
-.button {
-    background-color: #007bff; /* Cor padrão dos botões */
-    color: white; /* Texto branco */
-}
-
-.button:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
-}
-
-/* Texto das labels dos gráficos no modo escuro */
-body.dark-mode .chartjs-ticks {
-    color: white; /* Cor do texto no modo escuro */
-}
-
-/* Ajustes nos gráficos */
-.chartjs-tooltip {
-    color: white; /* Cor do texto da tooltip */
+body.dark-mode .modal-content,
+body.dark-mode .card,
+body.dark-mode .box {
+    background-color: #333;
+    color: #e0e0e0;
 }
 
 /* Ajustes gerais no modo escuro */
-body.dark-mode {
-    background-color: #181818; /* Cor de fundo do body em modo escuro */
-    color: white; /* Cor do texto */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode .navbar .navbar-item,
+body.dark-mode .footer a {
+    color: #ffffff;
 }
 
-/* Cabeçalho e outras partes também devem ser ajustadas, se necessário */
+/* Card de Produtos */
+.card {
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #f0f0f0 0%, #d9d9d9 100%);
+    color: #333;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-
-/* Dashboard */
-.dashboard {
-    background-color: #d1e7dd; /* Azul claro ou verde água que combine com o sistema */
+body.dark-mode .card {
+    background: linear-gradient(135deg, #4b4b4b 0%, #666666 100%);
 }
 
 /* Footer */
@@ -320,91 +245,11 @@ body.dark-mode {
     color: #a0aec0;
 }
 
-/* Modo Escuro */
-body.dark-mode {
-    background-color: #1a202c; /* Cor de fundo do modo escuro */
-    color: #a0aec0; /* Cor do texto */
-}
-
-body.dark-mode .navbar,
-body.dark-mode .footer {
-    background-color: #2d3748; /* Cor de fundo para navbar e footer no modo escuro */
-}
-
-body.dark-mode .navbar .navbar-item,
-body.dark-mode .navbar .navbar-link {
-    color: #cbd5e0; /* Cor do texto dos itens da navbar no modo escuro */
-}
-
-body.dark-mode .header {
-    background-color: #2d3748; /* Cor de fundo do cabeçalho no modo escuro */
-}
-
-body.dark-mode .header p,
-body.dark-mode .header .title {
-    color: #a0aec0; /* Cor do texto no cabeçalho no modo escuro */
-}
-
-/* Mudar cores de branco para preto e vice-versa no modo escuro */
-body.dark-mode .feedback-box,
+/* Modo Escuro para o Modal de Feedback */
 body.dark-mode .modal-content {
-    background-color: #333; /* Fundo preto para caixas de feedback e modais */
-    color: white; /* Texto branco */
+    background-color: #333;
 }
 
-body.dark-mode .feedback-box h3,
-body.dark-mode .feedback-box p,
-body.dark-mode .modal-content h2 {
-    color: white; /* Texto branco nos títulos e parágrafos */
-}
-
-body.dark-mode .btn-secondary {
-    background-color: #0056b3; /* Azul mais escuro para botões no modo escuro */
-}
-
-/* Feedback Box */
-.feedback-box {
-    background-color: #ffffff; /* Cor de fundo branca */
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 400px; /* Largura máxima da caixa de feedback */
-}
-
-/* Título da caixa de feedback */
-.feedback-box h3 {
-    font-size: 1.5em; /* Tamanho do título */
-    margin-bottom: 10px; /* Margem inferior */
-    color: #1e3a8a; /* Azul escuro */
-}
-
-/* Texto da caixa de feedback */
-.feedback-box p {
-    margin-bottom: 15px; /* Margem inferior */
-    color: #555; /* Cor cinza */
-}
-
-/* Estilo do botão de feedback */
-.btn-secondary {
-    background-color: #007bff; /* Azul para o botão */
-    color: white; /* Texto branco */
-    border: none; /* Sem borda */
-    border-radius: 4px; /* Cantos arredondados */
-    padding: 10px 15px; /* Padding do botão */
-    cursor: pointer; /* Mãozinha no hover */
-    font-size: 1em; /* Tamanho da fonte */
-    transition: background-color 0.3s; /* Transição suave na cor do fundo */
-}
-
-.btn-secondary:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
-}
-
-
-/* Estilo do Modal de Feedback */
-/* Estilo do Modal de Feedback */
 .modal {
     display: none;
     position: fixed;
@@ -418,91 +263,62 @@ body.dark-mode .btn-secondary {
 }
 
 .modal-content {
-    background-color: #fefefe; /* Cor de fundo do modal */
-    margin: 15% auto; /* Margem do modal */
-    padding: 20px; /* Padding do modal */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
     border: 1px solid #888;
-    width: 90%; /* Largura máxima do modal */
-    max-width: 500px; /* Largura máxima do modal */
-    border-radius: 10px; /* Cantos arredondados */
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
     position: relative;
+    text-align: center;
 }
 
-/* Menu Hambúrguer */
-.navbar-burger {
-    display: none; /* Ocultar em telas grandes */
+.modal-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #1e3a8a;
 }
 
-@media (max-width: 1024px) {
-    .closeMenu {
-        display: block; /* Mostra o botão "X" em telas pequenas */
-        margin: 0 auto; /* Centraliza o botão "X" */
-    }
-    .navbar-burger {
-        display: block; /* Mostrar em telas pequenas */
-    }
-
-    .navbar-menu {
-        display: none; /* Ocultar o menu por padrão */
-    }
-
-    .navbar-menu.is-active {
-        display: flex; /* Mostrar o menu quando ativo */
-        flex-direction: column; /* Alinhar os itens verticalmente */
-    }
+.modal-content textarea {
+    width: 90%;
+    min-height: 80px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 15px;
 }
 
-/* Estilos para o botão "X" */
-.closeMenu {
-    display: none; /* Inicialmente oculto */
-    font-size: 1.5em; /* Tamanho do ícone */
-    color: white; /* Cor do ícone */
+.modal-content .btn-secondary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Exibir o botão "X" em telas pequenas */
+.modal-content .btn-secondary:hover {
+    background-color: #0056b3;
+}
 
-
-
-
+/* Estilo do botão fechar (X) */
 .close {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 1.5em;
     font-weight: bold;
-    color: #333; /* Cor do texto padrão */
+    color: #333;
     cursor: pointer;
 }
 
-
-
-body.dark-mode .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #e3d6d6;
-    cursor: pointer;
+.close:hover {
+    color: #000;
 }
-
-.close:hover,
-.close:focus {
-    color: white; /* Cor do texto no hover para o modo escuro */
-    text-decoration: none; /* Sem sublinhado */
-    cursor: pointer; /* Mãozinha no hover */
-}
-
-/* Adicionar cor no modo escuro */
-body.dark-mode .modal-content {
-    background-color: #333; /* Cor de fundo no modo escuro */
-}
-
-body.dark-mode .modal-content h3,
-body.dark-mode .modal-content p {
-    color: white; /* Texto branco no modo escuro */
-}
-
 
 /* Tabs */
 .tabs ul li.is-active a {
@@ -526,155 +342,58 @@ body.dark-mode .modal-content p {
     }
 }
 
-/* Ajustar o tamanho dos gráficos em dispositivos móveis */
 canvas {
     width: 100% !important;
     height: auto !important;
 }
 
-/* Garantir que as tabelas sejam responsivas */
-.table-container {
-    overflow-x: auto;
-}
-
-/* Estilo dos cards de produtos */
-.card {
-    margin-bottom: 20px;
-}
-
-/* Ajustar tabelas para serem responsivas */
-.table-container {
-    overflow-x: auto;
-}
-
-.modal {
-    display: none; /* Para ocultar até ser acionado */
-}
-
-.modal.is-active {
-    display: flex; /* Mostra o modal quando está ativo */
-}
-
-/* Estilo do modal de notificações */
-.modal-content {
-    width: 90%;
-    max-width: 400px;
-    padding: 1em;
-}
-
-.notifications-list {
+/* Notificações */
+.notifications-list,
+#lista_notificacoes_dashboard {
     list-style-type: none;
     padding: 0;
     margin-top: 10px;
 }
 
-.notification-item {
+.notification-item,
+#lista_notificacoes_dashboard li {
     display: flex;
     align-items: center;
-    background-color: #fff3cd; /* Fundo amarelo suave */
-    color: #856404; /* Cor do texto escuro */
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para o painel de notificações do dashboard */
-#lista_notificacoes_dashboard {
-    list-style-type: none;
-    padding: 0;
-}
-
-#lista_notificacoes_dashboard li {
     background-color: #fff3cd;
     color: #856404;
     padding: 10px;
     margin-bottom: 8px;
     border-radius: 5px;
-}
-
-.notifications-list li {
-    display: flex;
-    align-items: center;
-    background-color: #fff3cd; /* Fundo amarelo suave */
-    color: #856404; /* Cor do texto escuro */
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.notifications-list li i {
-    color: #ffc107; /* Ícone de cor semelhante ao amarelo */
-    margin-right: 10px;
-    font-size: 1.2em;
-}
-
-.notifications-list li .notification-text {
-    color: #856404;
-    font-size: 0.9em;
-}
-
-/* Estilo do painel de notificações */
-.notification-panel {
-    background-color: #ffffff; /* Cor branca para o bloco externo */
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Cabeçalho do painel de notificações com o botão de fechar */
-.notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #856404;
-}
-
-.notification-header strong {
-    font-size: 1.1em;
-}
-
-/* Botão de fechar no painel */
-.close-btn {
-    background: none;
-    border: none;
-    color: #856404;
-    font-size: 1.2em;
-    cursor: pointer;
-}
-
-/* Estilo das notificações individuais dentro do painel */
-#lista_notificacoes_dashboard {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-#lista_notificacoes_dashboard li {
-    background-color: #fff3cd; /* Fundo amarelo claro */
-    color: #856404; /* Texto escuro */
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Ícone da notificação no dashboard */
+.notifications-list li i,
 #lista_notificacoes_dashboard li i {
-    color: #ffc107; /* Ícone amarelo */
+    color: #ffc107;
     margin-right: 10px;
     font-size: 1.2em;
 }
 
-/* Ajustes para texto em modo escuro */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode p {
-    color: #fff; /* Texto claro */
+/* Feedback Box */
+.feedback-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.feedback-box h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #1e3a8a;
+}
+
+.feedback-box p {
+    margin-bottom: 15px;
+    color: #555;
 }
 
 .footer-logo {
