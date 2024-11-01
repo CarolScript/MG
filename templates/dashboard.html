@@ -1,20 +1,13 @@
 <!-- templates/dashboard.html -->
 {% extends 'base.html' %}
 {% block content %}
+
 <h1 class="title">Dashboard</h1>
 
-<!-- Notificações -->
-<div id="notificacoes" class="notification is-warning">
-    <button class="delete" onclick="this.parentElement.style.display='none';"></button>
-    <strong>Notificações:</strong>
-    <ul id="lista_notificacoes"></ul>
-</div>
-
-<!-- Gráficos de Vendas Recentes -->
 <div class="columns is-multiline">
     <div class="column is-12-mobile is-6-tablet is-6-desktop">
-        <h2 class="subtitle">Vendas Recentes</h2>
-        <canvas id="graficoVendas"></canvas>
+        <h2 class="subtitle">Produtos Mais Vendidos</h2>
+        <canvas id="graficoMaisVendidos"></canvas>
     </div>
     <div class="column is-12-mobile is-6-tablet is-6-desktop">
         <h2 class="subtitle">Produtos em Baixa</h2>
@@ -22,11 +15,33 @@
     </div>
 </div>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         fetchNotificacoes();
         renderGraficosDashboard();
+        initializeDarkMode(); // Verifica e aplica o modo escuro
     });
 </script>
+
+ <!-- Feedback Container (acima do Footer) -->
+ <div class="feedback-box">
+    <h3>Deixe sua Opinião</h3>
+    <p>Ajude-nos a melhorar com seu feedback!</p>
+    <button onclick="openFeedbackForm()" class="btn-secondary">Enviar Feedback</button>
+</div>
+
+<!-- Modal de Feedback -->
+<!-- Modal de Feedback -->
+<div id="feedbackModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeFeedbackForm()">&times;</span>
+        <div class="feedback-box">
+            <h3>Deixe sua Opinião</h3>
+            <textarea id="feedbackText" placeholder="Escreva seu feedback aqui"></textarea>
+            <button onclick="sendFeedback()" class="btn-secondary">Enviar Feedback</button>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

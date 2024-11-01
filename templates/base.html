@@ -3,30 +3,61 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }} - Supermercado Garibaldi</title>
+    <title>{{ title }} - Mercado Garibaldi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("LRZqz-uqqovZo6wqH");
+        })();
+    </script>
 </head>
-<body>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="title is-3">Mercado Garibaldi</h1>
+                <p>Sistema de Estoque Inteligente e Moderno</p>
+            </div>
+            <div class="header-icons">
+                <!-- Notificações -->
+                <div class="icon has-text-white" id="notificacoesIcone">
+                    <i class="fas fa-bell"></i>
+                    <span class="tag is-danger" id="notification-count">0</span>
+                </div>
+                <!-- Modo Escuro -->
+                <button id="toggle-dark-mode" class="button is-light">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
     <!-- Navbar -->
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="{{ url_for('dashboard') }}">
-                <strong>Supermercado Garibaldi</strong>
-            </a>
+   <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-container">
+            <!-- Menu Hamburger -->
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-start">
+            
+            <!-- Menu Items -->
+            <div id="navbarMenu" class="navbar-menu">
+                <span class="closeMenu" onclick="closeMenu()">&times;</span>
                 <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
                 <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
@@ -34,43 +65,75 @@
             </div>
         </div>
     </nav>
+
+
+    
+    <div class="notification-panel" style="display: none;">
+        <div class="notification-header">
+            <strong>Notificações:</strong>
+            <button class="close-btn" onclick="document.querySelector('.notification-panel').style.display = 'none'">&times;</button>
+        </div>
+        <ul id="lista_notificacoes_dashboard"></ul>
+    </div>
+
     <!-- Main Content -->
-    <section class="section">
+    <section class="section" style="flex: 1;">
         <div class="container">
             {% block content %}
             {% endblock %}
         </div>
     </section>
+
+    <!-- Modal de Notificações -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-background" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h2 class="title is-4">📢 Notificações</h2>
+                <ul id="modal-notifications-list" class="notifications-list"></ul> <!-- Aqui -->
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Sistema desenvolvido por alunos durante a <a href="https://www.sympla.com.br/evento/univest-tech-experience-2024/2666786?share_id=copiarlink">Univest Tech Experience 2024</a>.</p>
+        <p>Feito por: equipe Invest.</p>
+        <img src="{{ url_for('static', filename='logo_invest.png') }}" alt="Logo Invest" class="footer-logo">
+    </footer>
+
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-
-    <!-- Script para o Menu Hambúrguer -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Selecionar todos os elementos "navbar-burger"
-            const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            // Código para alternar o menu hamburguer
+            const navbarBurger = document.querySelector('.navbar-burger');
+            const navbarMenu = document.getElementById('navbarMenu');
 
-            // Verificar se existem elementos navbar-burger
-            if (navbarBurgers.length > 0) {
+            navbarBurger.addEventListener('click', () => {
+                navbarBurger.classList.toggle('is-active');
+                navbarMenu.classList.toggle('is-active');
+                // Adiciona o X ao abrir o menu
+                if (navbarMenu.classList.contains('is-active')) {
+                    navbarBurger.innerHTML = '&times;'; // Adiciona o X
+                } else {
+                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
+                }
+            });
 
-                // Adicionar evento de clique em cada um deles
-                navbarBurgers.forEach(el => {
-                    el.addEventListener('click', () => {
-
-                        // Obter o alvo do "data-target"
-                        const target = el.dataset.target;
-                        const navbarMenu = document.getElementById(target);
-
-                        // Alternar a classe "is-active" no "navbar-burger" e no "navbar-menu"
-                        el.classList.toggle('is-active');
-                        navbarMenu.classList.toggle('is-active');
-
-                    });
-                });
-            }
+            // Fechar o menu ao clicar fora
+            document.addEventListener('click', (event) => {
+                if (!navbarBurger.contains(event.target) && !navbarMenu.contains(event.target)) {
+                    navbarMenu.classList.remove('is-active');
+                    navbarBurger.classList.remove('is-active');
+                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
+                }
+            });
         });
     </script>
     <!-- Importar a biblioteca de QR Code -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    
 </body>
 </html>
