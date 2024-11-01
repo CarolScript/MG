@@ -134,7 +134,7 @@ http://127.0.0.1:5000/
     Leitor de QR Code:
         Acesse o leitor de QR Code pelo menu.
         Clique em "Iniciar Leitura de QR Code" e permita o acesso à câmera.
-        Aponte a câmera para o QR Code de um produto para obter suas informações. (QRCode está na pasta static/qrcode)
+        Aponte a câmera para o QR Code de um produto para obter suas informações. (QRCode está na pasta static/qrcodes)
 
 
 📌 Versão
