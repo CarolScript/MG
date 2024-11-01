@@ -59,14 +59,20 @@ h1.title {
     }
 }
 
+/* Envolva a tabela com um contêiner para permitir rolagem horizontal */
 .table-container {
-    overflow-x: auto; /* Garante que a tabela se ajuste em telas menores */
+    overflow-x: auto; /* Adiciona rolagem horizontal quando necessário */
+    width: 98%; /* Garante que o contêiner ocupe toda a largura disponível */
 }
 
-table {
-    width: 100%; /* Garante que a tabela ocupe a largura total do contêiner */
-    text-align: left; /* Alinha o texto das células à esquerda */
+/* Ajustes adicionais para tabelas */
+.table-container table {
+    width: 98%; /* A tabela ocupa toda a largura do contêiner */
+    border-collapse: collapse;
 }
+
+
+
 
 th, td {
     padding: 10px; /* Adiciona padding para espaçamento nas células */
