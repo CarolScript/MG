@@ -15,7 +15,7 @@ Bem-vindo ao sistema de previsão de demanda desenvolvido para o _Supermercado G
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Contribuição](#estrutura-do-projeto)
 - [Licença](#licença)
-- [Contato](https://img.shields.io/badge/Contato-Visualizar-darkorange)](#contato)
+- [Contato](#contato)
 
 ---
 
