@@ -31,13 +31,14 @@
 /* Estilos para os ícones no topo */
 /* Estilos para os ícones no topo */
 .header-icons {
-    position: fixed;
+    position: absolute; /* Mude de fixed para absolute */
     top: 10px;
     right: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 
 /* Ajuste do título para evitar sobreposição */
 h1.title {
@@ -56,6 +57,21 @@ h1.title {
         padding-top: 60px; /* Adiciona mais espaço no topo em telas menores */
         margin-right: 20px; /* Margem menor para centralizar o título */
     }
+}
+
+.table-container {
+    overflow-x: auto; /* Garante que a tabela se ajuste em telas menores */
+}
+
+table {
+    width: 100%; /* Garante que a tabela ocupe a largura total do contêiner */
+    text-align: left; /* Alinha o texto das células à esquerda */
+}
+
+th, td {
+    padding: 10px; /* Adiciona padding para espaçamento nas células */
+    text-align: center; /* Centraliza o conteúdo nas células */
+    border-bottom: 1px solid #ddd; /* Linha inferior para separação visual */
 }
 
 
