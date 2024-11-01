@@ -158,39 +158,11 @@
     color: #ffffff;
 }
 
-.navbar .navbar-item:hover,
 .navbar .navbar-link:hover {
     background-color: #1a252f;
 }
 
-/* Estilo do Botão Hambúrguer */
-.navbar-burger {
-    color: #ffffff;
-}
-
-.navbar-burger span {
-    display: block;
-    background-color: #ffffff;
-    width: 24px;
-    height: 2px;
-    margin: 4px;
-    transition: all 0.3s;
-}
-
-/* Transformação do ícone em "X" quando ativo */
-.navbar-burger.is-active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navbar-burger.is-active span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar-burger.is-active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Estilos para o menu quando ativo */
+/* Estilos para o menu */
 .navbar-menu {
     display: none;
 }
@@ -199,69 +171,43 @@
     display: block;
 }
 
+.navbar-burger {
+    display: block;
+    color: #ffffff;
+}
 
+.navbar-burger.is-hidden {
+    display: none;
+}
 
+/* Botão de Fechar */
+.closeMenu {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
 
-@media (max-width: 1024px) {
-    .header-content {
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-        gap: 10px;
-    }
+.navbar-menu.is-active .closeMenu {
+    display: block;
+}
 
-    .navbar-burger {
-        display: block;
-        color: #ffffff;
-        position: absolute;
-        right: 20px;
-        top: 1px; /* Ajuste a posição vertical para centralizar */
-    }
-
-    /* Ícone de "X" ao abrir o menu */
-    .navbar-burger.is-active span {
-        display: none; /* Esconde as barras do hambúrguer */
-    }
-
-    .navbar-burger.is-active::before {
-        content: "\f00d"; /* Ícone de 'X' para o botão ativo */
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        color: #ffffff; /* Cor branca */
-    }
-
-    .navbar-container {
-        justify-content: flex-start;
-    }
-
+@media (min-width: 1024px) {
     .navbar-menu {
+        display: flex !important;
+    }
+    .navbar-burger {
         display: none;
-        background-color: #2d3e50; /* Fundo escuro para o menu ao abrir */
-
-        
     }
-    
-
-    .navbar-menu.is-active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        padding: 20px;
-        text-align: center;
-    }
-
-    
-
-    .navbar-item {
-        color: #ffffff;
-        padding: 15px;
-        text-align: center;
+    .closeMenu {
+        display: none !important;
     }
 }
+
 
 /* Estilo dos Botões */
 .button,

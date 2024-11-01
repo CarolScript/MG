@@ -43,7 +43,6 @@
         </div>
     </header>
 
-    <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-container">
             <!-- Menu Hamburger -->
@@ -55,12 +54,12 @@
             
             <!-- Menu Items -->
             <div id="navbarMenu" class="navbar-menu">
-                 <span id="closeMenuButton">✕</span>
+                <!-- Botão de Fechar -->
+                <span id="closeMenuButton" class="closeMenu">✕</span>
                 <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
                 <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
                 <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
-                <span class="closeMenu" id="closeMenuButton">&times;</span>
             </div>
         </div>
     </nav>
@@ -105,28 +104,49 @@
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navbarBurger = document.getElementById('navbarBurger');
-            const navbarMenu = document.getElementById('navbarMenu');
-            const navbarItems = document.querySelectorAll('.navbar-item');
-    
-            if (navbarBurger && navbarMenu) {
-                navbarBurger.addEventListener('click', () => {
-                    navbarBurger.classList.toggle('is-active');
-                    navbarMenu.classList.toggle('is-active');
-                });
-    
-                // Fecha o menu ao clicar em um item (em telas pequenas)
-                navbarItems.forEach(item => {
-                    item.addEventListener('click', () => {
-                        if (navbarBurger.classList.contains('is-active')) {
-                            navbarBurger.classList.remove('is-active');
-                            navbarMenu.classList.remove('is-active');
-                        }
-                    });
-                });
-            }
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarBurger = document.getElementById('navbarBurger');
+    const navbarMenu = document.getElementById('navbarMenu');
+    const closeButton = document.getElementById('closeMenuButton');
+
+    // Função para garantir o estado inicial
+    function initializeMenu() {
+        if (window.innerWidth > 1024) {
+            navbarMenu.style.display = 'flex'; // Exibe o menu completo em telas grandes
+            closeButton.style.display = 'none'; // Esconde o botão "X"
+            navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
+        } else {
+            navbarMenu.style.display = 'none'; // Oculta o menu em telas pequenas
+            navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+            closeButton.style.display = 'none'; // Esconde o botão "X"
+        }
+    }
+
+    // Inicializa o estado ao carregar a página
+    initializeMenu();
+
+    // Alterna o menu ao clicar no hambúrguer
+    navbarBurger.addEventListener('click', () => {
+        navbarMenu.classList.add('is-active'); // Mostra o menu
+        navbarMenu.style.display = 'flex'; // Exibe o menu
+        navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
+        closeButton.style.display = 'block'; // Exibe o botão "X"
+    });
+
+    // Fecha o menu e restaura o ícone hambúrguer ao clicar no "X"
+    closeButton.addEventListener('click', () => {
+        navbarMenu.classList.remove('is-active'); // Esconde o menu
+        navbarMenu.style.display = 'none'; // Oculta o menu
+        closeButton.style.display = 'none'; // Esconde o botão "X"
+        navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+    });
+
+    // Garante que o menu se ajuste ao redimensionamento
+    window.addEventListener('resize', () => {
+        initializeMenu();
+    });
+});
+
     </script>
     
     <!-- Importar a biblioteca de QR Code -->
