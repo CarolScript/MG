@@ -122,7 +122,22 @@ function fecharModalNotificacoes() {
 }
 
 // Evento de clique para o ícone de notificações
+// Função para abrir o modal de notificações
+function abrirModalNotificacoes() {
+    document.getElementById('notification-modal').classList.add('is-active');
+}
+
+// Função para fechar o modal de notificações
+function fecharModalNotificacoes() {
+    document.getElementById('notification-modal').classList.remove('is-active');
+}
+
+// Evento de clique para o ícone de notificações
 document.getElementById('notificacoesIcone').addEventListener('click', abrirModalNotificacoes);
+
+// Adiciona o evento de clique para o botão "X" no modal de notificações
+document.querySelector('.modal-close').addEventListener('click', fecharModalNotificacoes);
+
 
 // Funções para exibir notificações no painel do dashboard e no modal
 async function fetchNotificacoes() {
@@ -200,6 +215,9 @@ async function renderGraficosDashboard() {
             }]
         }
     });
+
+
+    
 
     // Exemplo de gráfico de produtos em baixa
     const responseEstoque = await fetch('/api/produtos_estoque_baixo');

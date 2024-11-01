@@ -84,9 +84,12 @@
     </section>
 
     <!-- Modal de Notificações -->
+   <!-- Modal de Notificações -->
+      <!-- Modal de Notificações -->
     <div id="notification-modal" class="modal">
-        <div class="modal-background" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></div>
+        <div class="modal-background" onclick="fecharModalNotificacoes()"></div>
         <div class="modal-content">
+            <button class="modal-close" aria-label="close" onclick="fecharModalNotificacoes()">X</button>
             <div class="box">
                 <h2 class="title is-4">📢 Notificações</h2>
                 <ul id="modal-notifications-list" class="notifications-list">
@@ -95,6 +98,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="footer">
