@@ -426,7 +426,6 @@ function renderError(errorMessage, elementId) {
     const relatorioDiv = document.getElementById(elementId);
     relatorioDiv.innerHTML = `<div class="notification is-danger">${errorMessage}</div>`;
 }
-
 document.addEventListener('DOMContentLoaded', () => {
     const navbarBurger = document.getElementById('navbarBurger');
     const navbarMenu = document.getElementById('navbarMenu');
