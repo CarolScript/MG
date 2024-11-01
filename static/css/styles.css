@@ -1,5 +1,5 @@
-/* Cabeçalho */
-.header {
+ /* Cabeçalho */ 
+ .header {
     background-color: #1e3a8a; /* Azul escuro */
     color: white;
     padding: 15px 0;
@@ -29,7 +29,7 @@
 /* Estilo de Notificação e Modo Escuro no Cabeçalho */
 .header-icons {
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 20px;
     display: flex;
     align-items: center;
@@ -40,70 +40,199 @@
     position: relative;
 }
 
+/* Estilo do Botão de Modo Escuro (Lua) */
+#toggle-dark-mode {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 80%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Ícone de Notificação (Sino) */
+#notification-icon {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border: none;
+    position: relative;
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    color: #ffffff;
+    font-size: 24px;
+    background-color: #1e3a8a;
+    border-radius: 80%;
+}
+
+/* Estilo do Contador de Notificações */
 #notification-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    font-size: 0.75em;
+    top: -6px;
+    right: -6px;
+    background-color: #ff4d4f;
     color: white;
+    font-size: 0.75em;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    #toggle-dark-mode {
+        width: 30px; /* Reduz largura em telas pequenas */
+        height: 30px; /* Reduz altura em telas pequenas */
+        font-size: 18px; /* Reduz tamanho do ícone */
+    }
+
+    #notification-icon {
+        width: 30px; /* Reduz largura do sino */
+        height: 30px; /* Reduz altura do sino */
+        font-size: 18px; /* Reduz tamanho do ícone */
+    }
+
+    #notification-count {
+        width: 16px; /* Reduz largura do contador */
+        height: 16px; /* Reduz altura do contador */
+        font-size: 0.65em; /* Ajusta o tamanho do texto */
+        top: -4px; /* Ajusta a posição para centralizar em ícones menores */
+        right: -4px; /* Ajusta a posição para centralizar em ícones menores */
+    }
+}
+
+/* Estilo para tornar a tabela responsiva em dispositivos móveis */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Para uma rolagem suave no iOS */
+    }
+
+    .table-container table {
+        width: 100%; /* Mantém a largura completa para permitir a rolagem */
+    }
+
+    /* Ajusta o padding e o tamanho da fonte para caber melhor na tela pequena */
+    .table-container th, 
+    .table-container td {
+        padding: 8px;
+        font-size: 0.9em;
+        white-space: nowrap; /* Impede que o texto quebre linhas */
+    }
+}
+
 
 /* Navbar */
 .navbar {
     background-color: #2d3e50;
+    margin-bottom: 0; /* Remove margens para evitar sobreposição */
+    padding: 10px 0; /* Adiciona espaçamento interno */
 }
 
-.navbar-item {
-    color: #ffffff;
+.navbar-container {
+    max-width: 1200px; /* Limita a largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o container da navbar */
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre itens */
+    align-items: center; /* Centraliza verticalmente */
 }
 
-.navbar-item:hover {
-    background-color: #1a252f;
-    color: #ffffff;
-}
-
-/* Botão Hambúrguer */
-.navbar-burger {
-    color: #ffffff;
-}
-
-.navbar-burger span {
-    display: block;
-    background-color: #ffffff;
-    width: 24px;
-    height: 2px;
-    margin: 4px;
-    transition: all 0.3s;
-}
-
-.navbar-burger.is-active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navbar-burger.is-active span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar-burger.is-active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Transição suave para o menu */
 .navbar-menu {
-    transition: max-height 0.3s ease;
-    background-color: #2d3e50;
+    display: flex;
+    justify-content: center;
 }
 
-@media (max-width: 1023px) {
+.navbar .navbar-item,
+.navbar .navbar-link {
+    color: #ffffff;
+}
+
+.navbar .navbar-item:hover,
+.navbar .navbar-link:hover {
+    background-color: #1a252f;
+}
+
+/* Menu Hambúrguer */
+.navbar-burger {
+    display: none;
+    font-size: 1.5em;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 1024px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        gap: 10px;
+    }
+
+    .navbar-burger {
+        display: block;
+        color: #ffffff;
+        position: absolute;
+        right: 20px;
+        top: 1px; /* Ajuste a posição vertical para centralizar */
+    }
+
+    /* Ícone de "X" ao abrir o menu */
+    .navbar-burger.is-active span {
+        display: none; /* Esconde as barras do hambúrguer */
+    }
+
+    .navbar-burger.is-active::before {
+        content: "\f00d"; /* Ícone de 'X' para o botão ativo */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: #ffffff; /* Cor branca */
+    }
+
+    .navbar-container {
+        justify-content: flex-start;
+    }
+
     .navbar-menu {
-        overflow: hidden;
-        max-height: 0;
+        display: none;
+        background-color: #2d3e50; /* Fundo escuro para o menu ao abrir */
+
+        
     }
+    
+
     .navbar-menu.is-active {
-        max-height: 300px; /* Ajuste conforme necessário */
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    
+
+    .navbar-item {
+        color: #ffffff;
+        padding: 15px;
+        text-align: center;
     }
 }
-
 
 /* Estilo dos Botões */
 .button,
@@ -361,6 +490,7 @@ body.dark-mode .btn-secondary {
 
 /* Estilo do Modal de Feedback */
 /* Estilo do Modal de Feedback */
+/* Estilo do Modal de Feedback */
 .modal {
     display: none;
     position: fixed;
@@ -374,63 +504,179 @@ body.dark-mode .btn-secondary {
 }
 
 .modal-content {
-    background-color: #fefefe; /* Cor de fundo do modal */
-    margin: 15% auto; /* Margem do modal */
-    padding: 20px; /* Padding do modal */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
     border: 1px solid #888;
-    width: 90%; /* Largura máxima do modal */
-    max-width: 500px; /* Largura máxima do modal */
-    border-radius: 10px; /* Cantos arredondados */
+    width: 80%;
+    max-width: 400px; /* Ajuste para centralizar melhor o modal */
+    border-radius: 10px;
     position: relative;
+    text-align: center; /* Centraliza o conteúdo */
 }
 
-/* Menu Hambúrguer */
-.navbar-burger {
-    display: none; /* Ocultar em telas grandes */
+/* Estilo do Título */
+.modal-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #1e3a8a; /* Azul escuro */
 }
 
-@media (max-width: 1024px) {
-    .closeMenu {
-        display: block; /* Mostra o botão "X" em telas pequenas */
-        margin: 0 auto; /* Centraliza o botão "X" */
-    }
-    .navbar-burger {
-        display: block; /* Mostrar em telas pequenas */
-    }
-
-    .navbar-menu {
-        display: none; /* Ocultar o menu por padrão */
-    }
-
-    .navbar-menu.is-active {
-        display: flex; /* Mostrar o menu quando ativo */
-        flex-direction: column; /* Alinhar os itens verticalmente */
-    }
+/* Estilo do Campo de Texto */
+.modal-content textarea {
+    width: 90%; /* Ajusta a largura do campo */
+    min-height: 80px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 15px;
 }
 
-/* Estilos para o botão "X" */
-.closeMenu {
-    display: none; /* Inicialmente oculto */
-    font-size: 1.5em; /* Tamanho do ícone */
-    color: white; /* Cor do ícone */
+/* Estilo do Botão de Envio */
+.modal-content .btn-secondary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Exibir o botão "X" em telas pequenas */
+.modal-content .btn-secondary:hover {
+    background-color: #0056b3;
+}
 
-
-
-
+/* Estilo do Botão Fechar (X) */
 .close {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 1.5em;
     font-weight: bold;
-    color: #333; /* Cor do texto padrão */
+    color: #333;
     cursor: pointer;
 }
 
+.close:hover {
+    color: #000;
+}
 
+/* Modo Escuro para o Modal de Feedback */
+body.dark-mode .modal-content {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-content h2 {
+    color: white;
+}
+
+body.dark-mode .modal-content textarea {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #666;
+}
+
+body.dark-mode .modal-content .btn-secondary {
+    background-color: #0056b3;
+}
+
+
+/* Navbar */
+
+/* Navbar */
+.navbar {
+    background-color: #2d3e50;
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar .navbar-item, .navbar .navbar-link {
+    color: #ffffff;
+}
+
+.navbar .navbar-item:hover, .navbar .navbar-link:hover {
+    background-color: #1a252f;
+}
+
+/* Menu Hambúrguer */
+.navbar-burger {
+    display: none;
+    font-size: 1.5em;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Botão "X" para fechar o menu */
+#closeMenuButton {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .navbar-burger {
+        display: block;
+        color: #ffffff;
+        position: absolute;
+        right: 20px;
+        top: 1px;
+    }
+    .navbar-menu {
+        display: none;
+        background-color: #2d3e50;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 50px 20px 20px;
+        text-align: center;
+        z-index: 1;
+    }
+    .navbar-menu.is-active {
+        display: flex;
+    }
+}
+
+@media (min-width: 1025px) {
+    #navbarMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2d3e50;
+    }
+    #navbarBurger, #closeMenuButton {
+        display: none;
+    }
+}
+
+/* Botão "X" Hover e Z-Index */
+#closeMenuButton:hover {
+    color: #e3e3e3;
+}
 
 body.dark-mode .close {
     position: absolute;
@@ -462,7 +708,7 @@ body.dark-mode .modal-content p {
 
 /* Tabs */
 .tabs ul li.is-active a {
-    background-color: #00d1b2;
+    background-color: #2d3e50;
     color: #fff;
 }
 
@@ -503,20 +749,7 @@ canvas {
     overflow-x: auto;
 }
 
-.modal {
-    display: none; /* Para ocultar até ser acionado */
-}
 
-.modal.is-active {
-    display: flex; /* Mostra o modal quando está ativo */
-}
-
-/* Estilo do modal de notificações */
-.modal-content {
-    width: 90%;
-    max-width: 400px;
-    padding: 1em;
-}
 
 .notifications-list {
     list-style-type: none;

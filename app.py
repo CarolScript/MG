@@ -388,5 +388,8 @@ def get_previsao(produto_id):
     return jsonify(previsao)
 
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Use a porta fornecida pelo Heroku
+    app.run(host='0.0.0.0', port=port, debug=True)

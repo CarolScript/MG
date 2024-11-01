@@ -45,27 +45,22 @@
 
     <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <!-- Logo ou título da marca (opcional) -->
-            <a class="navbar-item" href="{{ url_for('dashboard') }}">
-                <h1 class="title is-4" style="color: white;">Mercado Garibaldi</h1>
-            </a>
-
-            <!-- Botão Hambúrguer -->
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu" id="navbarBurger">
+        <div class="navbar-container">
+            <!-- Menu Hamburger -->
+            <a role="button" id="navbarBurger" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
-        </div>
-
-        <!-- Itens do Menu -->
-        <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-start">
+            
+            <!-- Menu Items -->
+            <div id="navbarMenu" class="navbar-menu">
+                 <span id="closeMenuButton">✕</span>
                 <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
                 <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
                 <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
+                <span class="closeMenu" id="closeMenuButton">&times;</span>
             </div>
         </div>
     </nav>
@@ -103,7 +98,7 @@
     <!-- Footer -->
     <footer class="footer">
         <p>Sistema desenvolvido por alunos durante a <a href="https://www.sympla.com.br/evento/univest-tech-experience-2024/2666786?share_id=copiarlink">Univest Tech Experience 2024</a>.</p>
-        <p>Feito por: equipe Invest.</p>
+        <p>Desenvolvido por: Equipe 8.</p>
         <img src="{{ url_for('static', filename='logo_invest.png') }}" alt="Logo Invest" class="footer-logo">
     </footer>
 

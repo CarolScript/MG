@@ -426,32 +426,48 @@ function renderError(errorMessage, elementId) {
     const relatorioDiv = document.getElementById(elementId);
     relatorioDiv.innerHTML = `<div class="notification is-danger">${errorMessage}</div>`;
 }
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Listener para abrir o menu
-    const navbarBurger = document.querySelector('.navbar-burger');
-    const navbarMenu = document.getElementById("navbarMenu");
-    const closeButton = document.querySelector('.close');
+    const navbarBurger = document.getElementById('navbarBurger');
+    const navbarMenu = document.getElementById('navbarMenu');
+    const closeButton = document.getElementById('closeMenuButton');
 
-    navbarBurger.addEventListener('click', () => {
-        if (navbarMenu.style.display === "block") {
-            closeMenu(); // Fecha o menu se já estiver aberto
+    // Função para garantir o estado inicial
+    function initializeMenu() {
+        if (window.innerWidth > 1024) {
+            navbarMenu.style.display = 'flex'; // Exibe o menu completo em telas grandes
+            closeButton.style.display = 'none'; // Esconde o botão "X"
+            navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
         } else {
-            navbarMenu.style.display = "block"; // Mostra o menu
-            navbarBurger.classList.add('is-active'); // Define o estado ativo do botão
+            navbarMenu.style.display = 'none'; // Oculta o menu em telas pequenas
+            navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+            closeButton.style.display = 'none'; // Esconde o botão "X"
         }
+    }
+
+    // Inicializa o estado ao carregar a página
+    initializeMenu();
+
+    // Alterna o menu ao clicar no hambúrguer
+    navbarBurger.addEventListener('click', () => {
+        navbarMenu.classList.add('is-active'); // Mostra o menu
+        navbarMenu.style.display = 'flex'; // Exibe o menu
+        navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
+        closeButton.style.display = 'block'; // Exibe o botão "X"
     });
 
-    closeButton.addEventListener('click', closeMenu);
+    // Fecha o menu e restaura o ícone hambúrguer ao clicar no "X"
+    closeButton.addEventListener('click', () => {
+        navbarMenu.classList.remove('is-active'); // Esconde o menu
+        navbarMenu.style.display = 'none'; // Oculta o menu
+        closeButton.style.display = 'none'; // Esconde o botão "X"
+        navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+    });
+
+    // Garante que o menu se ajuste ao redimensionamento
+    window.addEventListener('resize', () => {
+        initializeMenu();
+    });
 });
-
-function closeMenu() {
-    const navbarMenu = document.getElementById("navbarMenu");
-    navbarMenu.style.display = "none"; // Esconde o menu
-    const navbarBurger = document.querySelector('.navbar-burger');
-    navbarBurger.classList.remove('is-active'); // Remove a classe que indica que o menu está ativo
-}
-
 
 
 
