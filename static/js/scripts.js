@@ -388,3 +388,53 @@ async function carregarCategorias() {
         categoryFilter.appendChild(option);
     });
 }
+
+async function renderGraficosDashboard() {
+    // Gráfico de Produtos Mais Vendidos
+    const responseMaisVendidos = await fetch('/api/produtos_mais_vendidos');
+    const dataMaisVendidos = await responseMaisVendidos.json();
+
+    const ctxMaisVendidos = document.getElementById('graficoMaisVendidos').getContext('2d');
+    new Chart(ctxMaisVendidos, {
+        type: 'bar',
+        data: {
+            labels: dataMaisVendidos.labels,
+            datasets: [{
+                label: 'Quantidade Vendida',
+                data: dataMaisVendidos.values,
+                backgroundColor: '#00d1b2'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Gráfico de Produtos em Baixa
+    const responseEstoque = await fetch('/api/produtos_estoque_baixo');
+    const dataEstoque = await responseEstoque.json();
+
+    const ctxEstoque = document.getElementById('graficoEstoqueBaixo').getContext('2d');
+    new Chart(ctxEstoque, {
+        type: 'bar',
+        data: {
+            labels: dataEstoque.labels,
+            datasets: [{
+                label: 'Estoque',
+                data: dataEstoque.values,
+                backgroundColor: '#ff3860'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
