@@ -43,26 +43,27 @@
         </div>
     </header>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-container">
-            <!-- Menu Hamburger -->
-            <a role="button" id="navbarBurger" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-            
-            <!-- Menu Items -->
-            <div id="navbarMenu" class="navbar-menu">
-                <!-- Botão de Fechar -->
-                <span id="closeMenuButton" class="closeMenu">✕</span>
-                <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
-                <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
-                <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
-                <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
-            </div>
+<!-- Navbar -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+        <!-- Menu Hamburger -->
+        <a role="button" id="navbarBurger" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        
+        <!-- Menu Items -->
+        <div id="navbarMenu" class="navbar-menu">
+            <!-- Botão de Fechar -->
+            <span id="closeMenuButton" class="closeMenu">✕</span>
+            <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
+            <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
+            <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
 
     
@@ -109,41 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbarMenu = document.getElementById('navbarMenu');
     const closeButton = document.getElementById('closeMenuButton');
 
-    // Função para garantir o estado inicial
-    function initializeMenu() {
-        if (window.innerWidth > 1024) {
-            navbarMenu.style.display = 'flex'; // Exibe o menu completo em telas grandes
-            closeButton.style.display = 'none'; // Esconde o botão "X"
-            navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
-        } else {
-            navbarMenu.style.display = 'none'; // Oculta o menu em telas pequenas
-            navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
-            closeButton.style.display = 'none'; // Esconde o botão "X"
-        }
+    // Função para alternar o menu
+    function toggleMenu() {
+        navbarMenu.classList.toggle('is-active');
+        navbarBurger.classList.toggle('is-hidden');
     }
 
-    // Inicializa o estado ao carregar a página
-    initializeMenu();
-
-    // Alterna o menu ao clicar no hambúrguer
+    // Evento para abrir o menu
     navbarBurger.addEventListener('click', () => {
-        navbarMenu.classList.add('is-active'); // Mostra o menu
-        navbarMenu.style.display = 'flex'; // Exibe o menu
-        navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
-        closeButton.style.display = 'block'; // Exibe o botão "X"
+        toggleMenu();
     });
 
-    // Fecha o menu e restaura o ícone hambúrguer ao clicar no "X"
+    // Evento para fechar o menu
     closeButton.addEventListener('click', () => {
-        navbarMenu.classList.remove('is-active'); // Esconde o menu
-        navbarMenu.style.display = 'none'; // Oculta o menu
-        closeButton.style.display = 'none'; // Esconde o botão "X"
-        navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+        toggleMenu();
     });
 
-    // Garante que o menu se ajuste ao redimensionamento
-    window.addEventListener('resize', () => {
-        initializeMenu();
+    // Fecha o menu ao clicar em um item (opcional)
+    const navbarItems = document.querySelectorAll('.navbar-item');
+    navbarItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (navbarMenu.classList.contains('is-active')) {
+                toggleMenu();
+            }
+        });
     });
 });
 

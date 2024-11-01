@@ -136,33 +136,18 @@
 /* Navbar */
 .navbar {
     background-color: #2d3e50;
-    margin-bottom: 0; /* Remove margens para evitar sobreposição */
-    padding: 10px 0; /* Adiciona espaçamento interno */
+    margin-bottom: 0;
+    padding: 10px 0;
 }
 
 .navbar-container {
-    max-width: 1200px; /* Limita a largura máxima do conteúdo */
-    margin: 0 auto; /* Centraliza o container da navbar */
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Espaçamento entre itens */
-    align-items: center; /* Centraliza verticalmente */
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-menu {
-    display: flex;
-    justify-content: center;
-}
-
-.navbar .navbar-item,
-.navbar .navbar-link {
-    color: #ffffff;
-}
-
-.navbar .navbar-link:hover {
-    background-color: #1a252f;
-}
-
-/* Estilos para o menu */
 .navbar-menu {
     display: none;
 }
@@ -174,6 +159,7 @@
 .navbar-burger {
     display: block;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .navbar-burger.is-hidden {
@@ -201,11 +187,17 @@
         display: flex !important;
     }
     .navbar-burger {
-        display: none;
+        display: none !important;
     }
     .closeMenu {
         display: none !important;
     }
+}
+
+/* Evita que o ícone do menu desapareça no hover */
+.navbar-burger:hover {
+    background-color: transparent;
+    color: #ffffff;
 }
 
 
