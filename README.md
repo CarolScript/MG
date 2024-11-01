@@ -55,6 +55,8 @@ Adicione aqui capturas de tela ou GIFs que demonstrem o funcionamento do sistema
 
 <!-- 2. *Relatórios*: Permite a geração de relatórios de vendas e previsão de demanda. -->
 
+![Dashboard do Sistema](./path/to/dashboardark.png)
+
 ![Relatório de Vendas](./path/to/relatório.png)
 
 <!-- 3. *Produtos*: Lista de produtos com opção de pesquisa e filtro por categoria. -->

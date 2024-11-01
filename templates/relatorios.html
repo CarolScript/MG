@@ -13,9 +13,8 @@
     </div>
     <button class="modal-close is-large" aria-label="close" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></button>
 </div>
+
 <h1 class="title">Relatórios</h1>
-
-
 
 <!-- Seleção de Relatórios -->
 <div class="tabs is-toggle is-toggle-rounded">
@@ -58,6 +57,12 @@
         </div>
     </div>
 
+    <!-- Botões de Compartilhar e Imprimir -->
+    <div class="buttons" style="margin-top: 10px;">
+        <button class="button is-info" onclick="compartilharRelatorio()">Compartilhar</button>
+        <button class="button is-link" onclick="imprimirRelatorio()">Imprimir</button>
+    </div>
+
     <!-- Previsão de Demanda -->
     <div id="previsao" class="tab-content is-hidden">
         <div class="box">
@@ -98,7 +103,41 @@
     document.addEventListener('DOMContentLoaded', () => {
         inicializarRelatorios();
         initializeDarkMode(); // Verifica e aplica o modo escuro
-    fetchNotificacoes();
+        fetchNotificacoes();
     });
+
+    function fetchRelatorioVendas() {
+        // Aqui, você mantém o código que gera o conteúdo do relatório de vendas
+        document.getElementById('relatorioVendas').innerHTML = "<p>Conteúdo do Relatório de Vendas</p>";
+
+        // Exibe os botões de Compartilhar e Imprimir após o relatório ser gerado
+        document.querySelector('.buttons').style.display = "block";
+    }
+
+    function compartilharRelatorio() {
+        const conteudo = document.getElementById('relatorioVendas').innerText;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Relatório de Vendas',
+                text: conteudo
+            }).then(() => {
+                console.log('Compartilhamento bem-sucedido!');
+            }).catch(error => {
+                console.error('Erro ao compartilhar:', error);
+            });
+        } else {
+            alert('Função de compartilhamento não suportada neste dispositivo.');
+        }
+    }
+
+    function imprimirRelatorio() {
+        const conteudo = document.getElementById('relatorioVendas').innerHTML;
+        const janelaImpressao = window.open('', '', 'height=600,width=800');
+        janelaImpressao.document.write('<html><head><title>Imprimir Relatório de Vendas</title></head><body>');
+        janelaImpressao.document.write(conteudo);
+        janelaImpressao.document.write('</body></html>');
+        janelaImpressao.document.close();
+        janelaImpressao.print();
+    }
 </script>
 {% endblock %}

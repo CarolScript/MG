@@ -27,14 +27,38 @@
 }
 
 /* Estilo de Notificação e Modo Escuro no Cabeçalho */
+/* Estilos padrões para os ícones */
+/* Estilos para os ícones no topo */
+/* Estilos para os ícones no topo */
 .header-icons {
-    position: absolute;
-    top: 8px;
+    position: fixed;
+    top: 10px;
     right: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 1000; /* Define uma camada superior para manter os ícones no topo */
 }
+
+/* Ajuste do título para evitar sobreposição */
+h1.title {
+    padding-top: 50px; /* Adiciona espaço extra acima do título */
+    margin-right: 60px; /* Adiciona margem para que o texto não fique muito próximo dos ícones */
+    text-align: center; /* Centraliza o título */
+}
+
+/* Responsividade para ajustar o espaçamento em telas menores */
+@media (max-width: 768px) {
+    .header-icons {
+        top: 5px; /* Ajusta a posição superior para telas menores */
+        right: 10px; /* Ajusta a posição direita para manter os ícones visíveis */
+    }
+    h1.title {
+        padding-top: 60px; /* Adiciona mais espaço no topo em telas menores */
+        margin-right: 20px; /* Margem menor para centralizar o título */
+    }
+}
+
 
 body.dark-mode strong {
     color: #fffdfd;
