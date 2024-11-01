@@ -62,12 +62,12 @@ h1.title {
 /* Envolva a tabela com um contêiner para permitir rolagem horizontal */
 .table-container {
     overflow-x: auto; /* Adiciona rolagem horizontal quando necessário */
-    width: 50%; /* Garante que o contêiner ocupe toda a largura disponível */
+    width: 98%; /* Garante que o contêiner ocupe toda a largura disponível */
 }
 
 /* Ajustes adicionais para tabelas */
 .table-container table {
-    width: 50%; /* A tabela ocupa toda a largura do contêiner */
+    width: 98%; /* A tabela ocupa toda a largura do contêiner */
     border-collapse: collapse;
 }
 
@@ -172,7 +172,7 @@ body.dark-mode strong {
     }
 
     .table-container table {
-        width: 50%; /* Mantém a largura completa para permitir a rolagem */
+        width: 98%; /* Mantém a largura completa para permitir a rolagem */
     }
 
     /* Ajusta o padding e o tamanho da fonte para caber melhor na tela pequena */

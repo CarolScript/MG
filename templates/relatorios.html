@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <!-- Modal de Notificações -->
 <div id="notification-modal" class="modal">
     <div class="modal-background" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></div>
@@ -53,7 +54,7 @@
                     <button class="button is-primary" onclick="fetchRelatorioVendas()">Gerar Relatório</button>
                 </div>
             </div>
-            <div id="relatorioVendas"></div>
+            <div class="table-container" id="relatorioVendas"></div>
         </div>
     </div>
 
