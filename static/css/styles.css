@@ -37,7 +37,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    z-index: 1000; /* Define uma camada superior para manter os ícones no topo */
 }
 
 /* Ajuste do título para evitar sobreposição */
