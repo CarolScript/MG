@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbarMenu = document.getElementById('navbarMenu');
     const closeButton = document.getElementById('closeMenuButton');
 
-    // Função para garantir o estado inicial
+    // Inicializa o estado do menu conforme o tamanho da tela
     function initializeMenu() {
         if (window.innerWidth > 1024) {
             navbarMenu.style.display = 'flex'; // Exibe o menu completo em telas grandes
@@ -439,15 +439,15 @@ document.addEventListener('DOMContentLoaded', () => {
             navbarBurger.style.display = 'none'; // Esconde o ícone hambúrguer
         } else {
             navbarMenu.style.display = 'none'; // Oculta o menu em telas pequenas
-            navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
+            navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer em telas pequenas
             closeButton.style.display = 'none'; // Esconde o botão "X"
         }
     }
 
-    // Inicializa o estado ao carregar a página
+    // Chama a função de inicialização no carregamento da página
     initializeMenu();
 
-    // Alterna o menu ao clicar no hambúrguer
+    // Evento para abrir o menu e mostrar o botão "X"
     navbarBurger.addEventListener('click', () => {
         navbarMenu.classList.add('is-active'); // Mostra o menu
         navbarMenu.style.display = 'flex'; // Exibe o menu
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeButton.style.display = 'block'; // Exibe o botão "X"
     });
 
-    // Fecha o menu e restaura o ícone hambúrguer ao clicar no "X"
+    // Evento para fechar o menu e restaurar o ícone hambúrguer
     closeButton.addEventListener('click', () => {
         navbarMenu.classList.remove('is-active'); // Esconde o menu
         navbarMenu.style.display = 'none'; // Oculta o menu
@@ -463,11 +463,21 @@ document.addEventListener('DOMContentLoaded', () => {
         navbarBurger.style.display = 'block'; // Exibe o ícone hambúrguer
     });
 
-    // Garante que o menu se ajuste ao redimensionamento
+    // Ajuste para garantir que o menu e os botões se atualizem corretamente ao redimensionar a tela
     window.addEventListener('resize', () => {
         initializeMenu();
     });
 });
+
+
+
+
+
+
+
+// Adiciona eventos de clique para abrir e fechar o menu
+document.getElementById("navbarBurger").addEventListener("click", openMenu);
+document.getElementById("closeMenuButton").addEventListener("click", closeMenu);
 
 
 
