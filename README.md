@@ -1,91 +1,161 @@
-# Mercado Garibaldi - Sistema de Estoque Inteligente
+# Sistema de Previsão de Demanda para o Supermercado Garibaldi
 
-Um sistema de estoque inovador e moderno, desenvolvido para facilitar o controle e a previsão de demanda em supermercados. Este projeto foi criado durante a Univest Tech Experience 2024 por equipe Invest.
+Bem-vindo ao sistema de previsão de demanda desenvolvido para o _Supermercado Garibaldi_. Este projeto tem como objetivo otimizar a gestão de estoque através da previsão de demanda, minimizando desperdícios e garantindo a disponibilidade de produtos populares para os clientes.
 
-![Demonstração do Protótipo](./path/to/screenshot.png) <!-- Substitua pelo caminho da sua imagem -->
+## 📋 Índice
+
+- [Descrição do Projeto][(https://img.shields.io/badge/Descrição_do_Projeto-Visualizar-brightgreen)](#descrição-do-projeto)
+- [Funcionalidades Principais][(https://img.shields.io/badge/Funcionalidades-Visualizar-blue)](#funcionalidades-principais)
+- [Demonstração][(https://img.shields.io/badge/Demonstração-Visualizar-orange)](#demonstração)
+- [Tecnologias Utilizadas][(https://img.shields.io/badge/Tecnologias-Visualizar-lightgrey)](#tecnologias-utilizadas)
+- [Pré-requisitos][(https://img.shields.io/badge/Pré--requisitos-Visualizar-brightgreen)](#pré-requisitos)
+- [Instalação e Configuração][(https://img.shields.io/badge/Instalação_e_Configuração-Visualizar-red)](#instalação-e-configuração)
+- [Como Executar o Projeto][(https://img.shields.io/badge/Executar-Visualizar-purple)](#como-executar-o-projeto)
+- [Uso][(https://img.shields.io/badge/Uso-Visualizar-yellow)](#uso)
+- [Estrutura do Projeto][(https://img.shields.io/badge/Estrutura_do_Projeto-Visualizar-cyan)](#estrutura-do-projeto)
+- [Contribuição][(https://img.shields.io/badge/Estrutura_do_Projeto-Visualizar-cyan)](#estrutura-do-projeto)
+- [Licença][(https://img.shields.io/badge/Licença-Visualizar-lightblue)](#licença)
+- [Contato][(https://img.shields.io/badge/Contato-Visualizar-darkorange)](#contato)
 
 ---
 
-## 🛠️ Funcionalidades
+## 📖 Descrição do Projeto
 
-- **Dashboard Intuitivo:** Acesso rápido a gráficos de vendas, estoque por categoria e previsão de demanda.
-- **Relatórios Customizáveis:** Geração de relatórios de vendas filtrados por data.
-- **Alertas de Validade:** Notificações de produtos próximos do vencimento.
-- **Cadastro de Produtos:** Cadastro detalhado com informações de quantidade, preço, data de validade e fornecedor.
-- **Previsão de Demanda com IA:** Análise inteligente da demanda de produtos com base em dados sazonais.
+O Supermercado Garibaldi enfrenta desafios na gestão de estoque devido a variações sazonais na demanda, resultando em prateleiras vazias para produtos populares ou excesso de itens menos procurados. Este sistema foi desenvolvido para prever a demanda futura com base em dados históricos de vendas, permitindo que o supermercado otimize seu estoque, reduza desperdícios e melhore a satisfação dos clientes.
 
-## 📸 Demonstração
+---
 
-<!-- Coloque aqui as capturas de tela ou GIFs demonstrando as funcionalidades do site -->
-![Dashboard do Sistema](./path/to/dashboard_screenshot.png)
-![Relatório de Vendas](./path/to/report_screenshot.png)
+## 🚀 Funcionalidades Principais
 
-## 🚀 Tecnologias Utilizadas
+- _Dashboard Interativo_: Visualize rapidamente as vendas recentes e produtos com estoque baixo através de gráficos interativos.
+- _Relatórios Personalizados_:
+  - _Relatório de Vendas_: Gere relatórios de vendas por período, analisando desempenho de produtos.
+  - _Previsão de Demanda_: Preveja a demanda futura de produtos específicos usando modelos estatísticos avançados.
+- _Gestão de Produtos_:
+  - Visualize produtos cadastrados com detalhes como nome, categoria, preço, estoque atual e data de validade.
+  - Pesquise produtos por nome e filtre por categoria.
+- _Leitura de QR Code_:
+  - Utilize a câmera do dispositivo para ler QR Codes dos produtos.
+  - Obtenha informações detalhadas do produto após a leitura.
+- _Notificações_:
+  - Receba alertas sobre produtos próximos ao vencimento.
+  - Monitore produtos com estoque baixo.
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Gráficos:** Chart.js
-- **Email para Feedback:** Integração com EmailJS
-- **Inteligência Artificial:** Algoritmos de Machine Learning (simulação para previsão de demanda)
+---
 
-📦 **Instalação e Configuração**
+## 🎯 Demonstração
 
-### Pré-requisitos
-- **Python 3.x**: Certifique-se de que o Python esteja instalado na sua máquina.
-- **pip**: O gerenciador de pacotes do Python para instalar dependências.
+<!--
+Adicione aqui capturas de tela ou GIFs que demonstrem o funcionamento do sistema. Como este é um exemplo textual, descreveremos as telas:
+-->
 
-### Passos para instalação
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+<!-- 1. *Dashboard*: Exibe gráficos de vendas recentes e produtos com estoque baixo. -->
 
-2. Instale as dependências:
-   ```bash
-   Copiar código
-   npm install
-3. Inicie o projeto:
-    ```bash
-   Copiar código
-   npm start
+![Dashboard do Sistema](./path/to/dashboard.png)
 
-### Passos para o BACK-END
+<!-- 2. *Relatórios*: Permite a geração de relatórios de vendas e previsão de demanda. -->
 
-1. python -m venv env
+![Relatório de Vendas](./path/to/relatório.png)
 
-2. env\Scripts\activate (no windows); source env/bin/activate (no mac)
+<!-- 3. *Produtos*: Lista de produtos com opção de pesquisa e filtro por categoria. -->
 
-   2.1 Caso dê erro ao ativar script no windows, digite no powershell (como administrador) Set-ExecutionPolicy Unrestricted e habilite.
+![Produtos](./path/to/produto.png)
 
-3. pip install -r requirements.txt
+<!-- 4. *Leitor de QR Code*: Interface para leitura de QR Codes e exibição de informações do produto. -->
 
-4. python app.py
+![QRcode](./path/to/qrcode.png)
 
-5. Entrem no navegador e acesse [127.0.0.1/5000](http://127.0.0.1:5000/)
-   
+## 🛠️ Tecnologias Utilizadas
 
-🗂 Estrutura do Projeto
+- _Linguagem de Programação_: Python 3.x
+- _Framework Web_: Flask
+- _Banco de Dados_: SQLite
+- _Frontend_:
+  - _HTML5_ e _CSS3_
+  - _Bulma CSS_ (Framework CSS responsivo)
+  - _JavaScript_ com _ES6+_
+- _Bibliotecas e Ferramentas_:
+  - _Chart.js_: Para gráficos interativos.
+  - _Prophet_: Biblioteca para previsão de demanda.
+  - _html5-qrcode_: Biblioteca para leitura de QR Codes no navegador.
+  - _Pandas_ e _NumPy_: Manipulação e análise de dados.
+  - _SQLite3_: Banco de dados leve e fácil de usar.
 
+---
 
-├── instance
-│   └── database.db      # Banco de dados do projeto
-├── path\ to
-│   ├── dashboard_screenshot.png
-│   ├── report_screenshot.png
-│   └── screenshot.png
-├── static
-│   ├── css
-│   │   └── styles.css    # Estilos principais
-│   ├── js
-│   └── qrCodes
-│       └── logo_invest.png # Logo do Invest
-├── templates
-│   ├── base.html         # Estrutura básica do HTML
-│   ├── dashboard.html     # Página do dashboard
-│   ├── produtos.html      # Página de produtos
-│   ├── relatorios.html     # Página de relatórios
-│   └── scanner.html       # Página do scanner
-├── README.md              # Este arquivo de documentação
-└── app.py                 # Arquivo principal do aplicativo
+## 📋 Pré-requisitos
 
-🤝 Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir Issues ou Pull Requests.
+Antes de começar, certifique-se de ter o seguinte instalado em sua máquina:
+
+- _Python 3.x_
+- _pip_ (gerenciador de pacotes do Python)
+- _Git_ (opcional, se for clonar o repositório)
+
+---
+
+## ⚙️ Instalação e Configuração
+
+### 1. Clone o Repositório
+
+```bash
+git clone https://github.com/seu_usuario/supermercado-garibaldi.git
+cd supermercado-garibaldi
+
+2. Crie um Ambiente Virtual
+
+Crie um ambiente virtual para isolar as dependências do projeto.
+
+python -m venv env
+
+3. Ative o Ambiente Virtual
+
+    No Windows:
+      env\Scripts\activate
+
+source env/bin/activate
+
+Nota: Se receber um erro ao ativar o script no Windows, execute o PowerShell como administrador e digite:
+
+Set-ExecutionPolicy RemoteSigned
+Escolha "A" para "Sim para Todos".
+4. Instale as Dependências
+
+pip install -r requirements.txt
+
+▶️ Como Executar o Projeto
+
+Com o ambiente virtual ativado e as dependências instaladas, execute o seguinte comando para iniciar a aplicação:
+
+python app.py
+A aplicação estará disponível em http://127.0.0.1:5000/.
+
+💻 Uso
+1. Acessar a Aplicação
+
+Abra o navegador e acesse:
+
+http://127.0.0.1:5000/
+
+2. Navegação pelo Sistema
+
+    Dashboard:
+        Visualize gráficos de vendas recentes e produtos com estoque baixo.
+    Relatórios:
+        Gere relatórios de vendas por período.
+        Faça previsões de demanda selecionando um produto e período desejado.
+    Produtos:
+        Veja a lista de produtos cadastrados.
+        Pesquise por nome e filtre por categoria.
+    Leitor de QR Code:
+        Acesse o leitor de QR Code pelo menu.
+        Clique em "Iniciar Leitura de QR Code" e permita o acesso à câmera.
+        Aponte a câmera para o QR Code de um produto para obter suas informações.
+
+🗂️ Estrutura do Projeto
+
+(ESSE AQUI A GENTE FAZ DEPOIS)
+
+📌 Versão
+
+    Versão Atual: 1.0.0
+```
