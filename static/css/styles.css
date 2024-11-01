@@ -48,7 +48,7 @@ h1.title {
 }
 
 /* Responsividade para ajustar o espaçamento em telas menores */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
     .header-icons {
         top: 5px; /* Ajusta a posição superior para telas menores */
         right: 10px; /* Ajusta a posição direita para manter os ícones visíveis */
@@ -62,12 +62,12 @@ h1.title {
 /* Envolva a tabela com um contêiner para permitir rolagem horizontal */
 .table-container {
     overflow-x: auto; /* Adiciona rolagem horizontal quando necessário */
-    width: 98%; /* Garante que o contêiner ocupe toda a largura disponível */
+    width: 50%; /* Garante que o contêiner ocupe toda a largura disponível */
 }
 
 /* Ajustes adicionais para tabelas */
 .table-container table {
-    width: 98%; /* A tabela ocupa toda a largura do contêiner */
+    width: 50%; /* A tabela ocupa toda a largura do contêiner */
     border-collapse: collapse;
 }
 
@@ -172,7 +172,7 @@ body.dark-mode strong {
     }
 
     .table-container table {
-        width: 100%; /* Mantém a largura completa para permitir a rolagem */
+        width: 50%; /* Mantém a largura completa para permitir a rolagem */
     }
 
     /* Ajusta o padding e o tamanho da fonte para caber melhor na tela pequena */
@@ -364,7 +364,7 @@ body.dark-mode .card p {
     box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02);
     color: #4a4a4a;
     display: block;
-    padding: 1.25rem;
+    padding: 0.55rem;
 }
 
 body.dark-mode .box {
