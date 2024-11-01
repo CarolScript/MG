@@ -4,18 +4,18 @@ Bem-vindo ao sistema de previsão de demanda desenvolvido para o _Supermercado G
 
 ## 📋 Índice
 
-- [Descrição do Projeto][(https://img.shields.io/badge/Descrição_do_Projeto-Visualizar-brightgreen)](#descrição-do-projeto)
-- [Funcionalidades Principais][(https://img.shields.io/badge/Funcionalidades-Visualizar-blue)](#funcionalidades-principais)
-- [Demonstração][(https://img.shields.io/badge/Demonstração-Visualizar-orange)](#demonstração)
-- [Tecnologias Utilizadas][(https://img.shields.io/badge/Tecnologias-Visualizar-lightgrey)](#tecnologias-utilizadas)
-- [Pré-requisitos][(https://img.shields.io/badge/Pré--requisitos-Visualizar-brightgreen)](#pré-requisitos)
-- [Instalação e Configuração][(https://img.shields.io/badge/Instalação_e_Configuração-Visualizar-red)](#instalação-e-configuração)
-- [Como Executar o Projeto][(https://img.shields.io/badge/Executar-Visualizar-purple)](#como-executar-o-projeto)
-- [Uso][(https://img.shields.io/badge/Uso-Visualizar-yellow)](#uso)
-- [Estrutura do Projeto][(https://img.shields.io/badge/Estrutura_do_Projeto-Visualizar-cyan)](#estrutura-do-projeto)
-- [Contribuição][(https://img.shields.io/badge/Estrutura_do_Projeto-Visualizar-cyan)](#estrutura-do-projeto)
-- [Licença][(https://img.shields.io/badge/Licença-Visualizar-lightblue)](#licença)
-- [Contato][(https://img.shields.io/badge/Contato-Visualizar-darkorange)](#contato)
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Funcionalidades Principais](#funcionalidades-principais)
+- [Demonstração](#demonstração)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação e Configuração](#instalação-e-configuração)
+- [Como Executar o Projeto](#como-executar-o-projeto)
+- [Uso](#uso)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Contribuição](#estrutura-do-projeto)
+- [Licença](#licença)
+- [Contato](https://img.shields.io/badge/Contato-Visualizar-darkorange)](#contato)
 
 ---
 
