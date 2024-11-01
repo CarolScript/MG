@@ -150,13 +150,6 @@ def prever_demanda(produto_id):
         return {'erro': 'Erro ao prever demanda'}
 
 
-@app.route('/api/previsao/<produto_id>', methods=['GET'])
-def get_previsao(produto_id):
-    periodo = request.args.get('periodo', default=7, type=int)
-    previsao = prever_demanda(produto_id, periodo)
-    return jsonify(previsao)
-
-
 @app.route('/api/relatorio_vendas', methods=['GET'])
 def relatorio_vendas():
     try:
@@ -363,6 +356,36 @@ def get_produto(produto_id):
         app.logger.error(f"Erro ao obter produto: {e}")
         return jsonify({'erro': 'Erro ao obter produto'}), 500
 
+
+@app.route('/api/produtos_mais_vendidos', methods=['GET'])
+def produtos_mais_vendidos():
+    try:
+        conn = get_db_connection()
+        query = '''
+            SELECT p.nome, SUM(vp.quantidadeProduto) AS quantidade_vendida
+            FROM vendaProduto vp
+            JOIN produto p ON vp.produtoId = p.id
+            GROUP BY p.id
+            ORDER BY quantidade_vendida DESC
+            LIMIT 5
+        '''
+        produtos = conn.execute(query).fetchall()
+        conn.close()
+
+        labels = [row['nome'] for row in produtos]
+        values = [row['quantidade_vendida'] for row in produtos]
+
+        return jsonify({'labels': labels, 'values': values})
+    except Exception as e:
+        app.logger.error(f"Erro ao obter produtos mais vendidos: {e}")
+        return jsonify({'erro': 'Erro ao obter produtos mais vendidos'}), 500
+
+
+@app.route('/api/previsao/<produto_id>', methods=['GET'])
+def get_previsao(produto_id):
+    periodo = request.args.get('periodo', default=7, type=int)
+    previsao = prever_demanda(produto_id, periodo)
+    return jsonify(previsao)
 
 
 if __name__ == '__main__':
