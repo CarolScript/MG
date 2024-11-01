@@ -63,10 +63,19 @@
         </div>
     </nav>
 
+    <div class="notification-panel" style="display: none;">
+        <div class="notification-header">
+            <strong>Notificações:</strong>
+            <button class="close-btn" onclick="document.querySelector('.notification-panel').style.display = 'none'">&times;</button>
+        </div>
+        <ul id="lista_notificacoes_dashboard"></ul>
+    </div>
+
     <!-- Main Content -->
     <section class="section" style="flex: 1;">
         <div class="container">
             {% block content %}
+            
             {% endblock %}
         </div>
     </section>

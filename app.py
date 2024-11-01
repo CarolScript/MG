@@ -279,7 +279,7 @@ def notificacoes():
 
 @app.route('/dashboard')
 def dashboard_redirect():
-    return render_template('dashboard.html')
+    return render_template('base.html')
 
 @app.route('/relatorios')
 def relatorios():
