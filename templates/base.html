@@ -44,30 +44,23 @@
     </header>
 
     <!-- Navbar -->
-   <!-- Navbar -->
-    <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
-       <!-- Botão de menu hamburguer -->
-<!-- Botão de menu hamburguer -->
-<!-- Botão do menu hamburguer -->
-<!-- Botão do menu hamburguer -->
-<a role="button" id="navbarBurger" class="navbar-burger" aria-label="menu" aria-expanded="false">
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-</a>
-
-<!-- Menu com o botão de fechar -->
-<div id="navbarMenu" class="navbar-menu">
-    <span id="closeMenuButton" onclick="closeMenu()">&times;</span>
-    <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
-    <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
-    <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
-    <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
-</div>
-
-
-
+        <div class="navbar-container">
+            <!-- Menu Hamburger -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            
+            <!-- Menu Items -->
+            <div id="navbarMenu" class="navbar-menu">
+                <span class="closeMenu" onclick="closeMenu()">&times;</span>
+                <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
+                <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
+                <a class="navbar-item" href="{{ url_for('scanner') }}">Leitor QR Code</a>
+            </div>
         </div>
     </nav>
 
@@ -112,31 +105,29 @@
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Código para alternar o menu hamburguer
-            const navbarBurger = document.querySelector('.navbar-burger');
+            const navbarBurger = document.getElementById('navbarBurger');
             const navbarMenu = document.getElementById('navbarMenu');
-
-            navbarBurger.addEventListener('click', () => {
-                navbarBurger.classList.toggle('is-active');
-                navbarMenu.classList.toggle('is-active');
-                // Adiciona o X ao abrir o menu
-                if (navbarMenu.classList.contains('is-active')) {
-                    navbarBurger.innerHTML = '&times;'; // Adiciona o X
-                } else {
-                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
-                }
-            });
-
-            // Fechar o menu ao clicar fora
-            document.addEventListener('click', (event) => {
-                if (!navbarBurger.contains(event.target) && !navbarMenu.contains(event.target)) {
-                    navbarMenu.classList.remove('is-active');
-                    navbarBurger.classList.remove('is-active');
-                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
-                }
-            });
+            const navbarItems = document.querySelectorAll('.navbar-item');
+    
+            if (navbarBurger && navbarMenu) {
+                navbarBurger.addEventListener('click', () => {
+                    navbarBurger.classList.toggle('is-active');
+                    navbarMenu.classList.toggle('is-active');
+                });
+    
+                // Fecha o menu ao clicar em um item (em telas pequenas)
+                navbarItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        if (navbarBurger.classList.contains('is-active')) {
+                            navbarBurger.classList.remove('is-active');
+                            navbarMenu.classList.remove('is-active');
+                        }
+                    });
+                });
+            }
         });
     </script>
+    
     <!-- Importar a biblioteca de QR Code -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     

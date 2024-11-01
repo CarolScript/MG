@@ -46,16 +46,16 @@
 /* Navbar */
 .navbar {
     background-color: #2d3e50;
-    margin-bottom: 0;
-    padding: 10px 0;
+    margin-bottom: 0; /* Remove margens para evitar sobreposição */
+    padding: 10px 0; /* Adiciona espaçamento interno */
 }
 
 .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Limita a largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o container da navbar */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Espaçamento entre itens */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 .navbar-menu {
@@ -68,87 +68,58 @@
     color: #ffffff;
 }
 
-.navbar .navbar-item:hover,
-.navbar .navbar-link:hover {
+.navbar-item:hover {
     background-color: #1a252f;
+    color: #ffffff;
 }
 
-/* Menu Hambúrguer */
+/* Botão Hambúrguer */
 .navbar-burger {
-    display: none;
-    font-size: 1.5em;
     color: #ffffff;
     cursor: pointer;
 }
 
-/* Botão "X" para fechar o menu */
-/* Ajuste do botão "X" para aparecer acima dos itens do menu */
-#closeMenuButton {
-    display: none;
-    font-size: 1.5em;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10; /* Garantir que o botão "X" fique acima dos itens do menu */
-}
-
-/* Estilo para o menu em telas pequenas */
 
 
-
-/* Modo Escuro */
-body.dark-mode {
-    background-color: #1a202c;
-    color: #a0aec0;
-}
-
-body.dark-mode .navbar,
-body.dark-mode .footer,
-body.dark-mode .header {
-    background-color: #2d3748;
-}
-
-body.dark-mode .navbar-item,
-body.dark-mode .header .title,
-body.dark-mode .header p {
-    color: #cbd5e0;
-}
-
-#closeMenuButton {
-    display: none;
-    font-size: 1.5em;
-    color: white;
-    cursor: pointer;
-    position: absolute;
-    top: 15px; /* Aumente o espaçamento */
-    right: 15px; /* Aumente o espaçamento */
-    z-index: 10; /* Mantém o botão "X" acima dos itens do menu */
-}
-
-/* Responsividade */
 @media (max-width: 1024px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        gap: 10px;
+    }
+
     .navbar-burger {
         display: block;
         color: #ffffff;
         position: absolute;
         right: 20px;
-        top: 1px;
+        top: 1px; /* Ajuste a posição vertical para centralizar */
     }
+
+    /* Ícone de "X" ao abrir o menu */
+    .navbar-burger.is-active span {
+        display: none; /* Esconde as barras do hambúrguer */
+    }
+
+    .navbar-burger.is-active::before {
+        content: "\f00d"; /* Ícone de 'X' para o botão ativo */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: #ffffff; /* Cor branca */
+    }
+
+    .navbar-container {
+        justify-content: flex-start;
+    }
+
     .navbar-menu {
         display: none;
-        background-color: #2d3e50;
-        flex-direction: column;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        padding: 20px;
-        text-align: center;
-        z-index: 1;
+        background-color: #2d3e50; /* Fundo escuro para o menu ao abrir */
+
+        
     }
+    
 
     .navbar-menu.is-active {
         display: flex;
@@ -157,39 +128,21 @@ body.dark-mode .header p {
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #2d3e50;
-        padding: 50px 20px 20px; /* Espaço adicional no topo para o botão "X" */
+        height: auto;
+        padding: 20px;
         text-align: center;
-        z-index: 1;
-    }
-   
-   
-}
-
-@media (min-width: 1025px) {
-    #navbarMenu {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #2d3e50;
     }
 
-    #navbarBurger,
-    #closeMenuButton {
-        display: none;
+    
+
+    .navbar-item {
+        color: #ffffff;
+        padding: 15px;
+        text-align: center;
     }
 }
 
-/* Remover duplicações e consolidar estilos */
-.footer,
-.notification-panel,
-.notification-header {
-    background-color: #2d3e50;
-    color: #cbd5e0;
-    padding: 10px;
-    text-align: center;
-}
-
+/* Estilo dos Botões */
 .button,
 .btn-secondary {
     background-color: #007bff;
@@ -322,7 +275,7 @@ body.dark-mode .modal-content {
 
 /* Tabs */
 .tabs ul li.is-active a {
-    background-color: #2d3e50;
+    background-color: #00d1b2;
     color: #fff;
 }
 
