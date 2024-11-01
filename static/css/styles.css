@@ -163,13 +163,42 @@
     background-color: #1a252f;
 }
 
-/* Menu Hambúrguer */
+/* Estilo do Botão Hambúrguer */
 .navbar-burger {
-    display: none;
-    font-size: 1.5em;
     color: #ffffff;
-    cursor: pointer;
 }
+
+.navbar-burger span {
+    display: block;
+    background-color: #ffffff;
+    width: 24px;
+    height: 2px;
+    margin: 4px;
+    transition: all 0.3s;
+}
+
+/* Transformação do ícone em "X" quando ativo */
+.navbar-burger.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-burger.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-burger.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Estilos para o menu quando ativo */
+.navbar-menu {
+    display: none;
+}
+
+.navbar-menu.is-active {
+    display: block;
+}
+
 
 
 
