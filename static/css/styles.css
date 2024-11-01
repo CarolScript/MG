@@ -112,6 +112,27 @@
     }
 }
 
+/* Estilo para tornar a tabela responsiva em dispositivos móveis */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Para uma rolagem suave no iOS */
+    }
+
+    .table-container table {
+        width: 100%; /* Mantém a largura completa para permitir a rolagem */
+    }
+
+    /* Ajusta o padding e o tamanho da fonte para caber melhor na tela pequena */
+    .table-container th, 
+    .table-container td {
+        padding: 8px;
+        font-size: 0.9em;
+        white-space: nowrap; /* Impede que o texto quebre linhas */
+    }
+}
+
+
 /* Navbar */
 .navbar {
     background-color: #2d3e50;
