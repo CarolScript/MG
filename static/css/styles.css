@@ -171,16 +171,11 @@
     display: block;
 }
 
-.navbar-burger {
-    display: block;
-    color: #ffffff;
-}
 
 .navbar-burger.is-hidden {
     display: none;
 }
 
-/* Botão de Fechar */
 .closeMenu {
     display: none;
     font-size: 1.5em;
