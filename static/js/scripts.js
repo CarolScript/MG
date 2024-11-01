@@ -20,8 +20,95 @@ function initializeDarkMode() {
     }
 }
 
+
+
 // Adiciona o evento de clique para o botão de modo escuro
 document.getElementById('toggle-dark-mode').addEventListener('click', toggleDarkMode);
+
+
+async function renderGraficosDashboard() {
+    // Exemplo de gráfico de vendas recentes
+    const response = await fetch('/api/vendas_recentes');
+    const data = await response.json();
+
+    const ctxVendas = document.getElementById('graficoVendas').getContext('2d');
+    new Chart(ctxVendas, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Vendas',
+                data: data.values,
+                borderColor: '#007bff', // Linha de vendas
+                backgroundColor: 'rgba(0, 123, 255, 0.2)', // Fundo do gráfico
+                fill: true
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Cor da legenda
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // Cor dos ticks do eixo X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Cor dos ticks do eixo Y
+                    }
+                }
+            }
+        }
+    });
+
+    
+
+    // Gráfico de produtos em baixa (similar)
+    const responseEstoque = await fetch('/api/produtos_estoque_baixo');
+    const dataEstoque = await responseEstoque.json();
+
+    const ctxEstoque = document.getElementById('graficoEstoqueBaixo').getContext('2d');
+    new Chart(ctxEstoque, {
+        type: 'bar',
+        data: {
+            labels: dataEstoque.labels,
+            datasets: [{
+                label: 'Estoque',
+                data: dataEstoque.values,
+                backgroundColor: '#ff3860', // Cor do estoque
+                borderColor: '#ff3860', // Bordas da barra
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Cor da legenda
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // Cor dos ticks do eixo X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // Cor dos ticks do eixo Y
+                    }
+                }
+            }
+        }
+    });
+}
 
 // Função para abrir o modal de notificações
 function abrirModalNotificacoes() {
@@ -121,6 +208,7 @@ async function renderGraficosDashboard() {
     const ctxEstoque = document.getElementById('graficoEstoqueBaixo').getContext('2d');
     new Chart(ctxEstoque, {
         type: 'bar',
+        color: '#ff3860',
         data: {
             labels: dataEstoque.labels,
             datasets: [{
@@ -338,6 +426,34 @@ function renderError(errorMessage, elementId) {
     const relatorioDiv = document.getElementById(elementId);
     relatorioDiv.innerHTML = `<div class="notification is-danger">${errorMessage}</div>`;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Listener para abrir o menu
+    const navbarBurger = document.querySelector('.navbar-burger');
+    const navbarMenu = document.getElementById("navbarMenu");
+    const closeButton = document.querySelector('.close');
+
+    navbarBurger.addEventListener('click', () => {
+        if (navbarMenu.style.display === "block") {
+            closeMenu(); // Fecha o menu se já estiver aberto
+        } else {
+            navbarMenu.style.display = "block"; // Mostra o menu
+            navbarBurger.classList.add('is-active'); // Define o estado ativo do botão
+        }
+    });
+
+    closeButton.addEventListener('click', closeMenu);
+});
+
+function closeMenu() {
+    const navbarMenu = document.getElementById("navbarMenu");
+    navbarMenu.style.display = "none"; // Esconde o menu
+    const navbarBurger = document.querySelector('.navbar-burger');
+    navbarBurger.classList.remove('is-active'); // Remove a classe que indica que o menu está ativo
+}
+
+
+
 
 // Funções de Feedback
 window.openFeedbackForm = function() {

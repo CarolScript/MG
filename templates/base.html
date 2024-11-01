@@ -44,6 +44,8 @@
     </header>
 
     <!-- Navbar -->
+   <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-container">
             <!-- Menu Hamburger -->
@@ -55,6 +57,7 @@
             
             <!-- Menu Items -->
             <div id="navbarMenu" class="navbar-menu">
+                <span class="closeMenu" onclick="closeMenu()">&times;</span>
                 <a class="navbar-item" href="{{ url_for('dashboard') }}">Dashboard</a>
                 <a class="navbar-item" href="{{ url_for('relatorios') }}">Relatórios</a>
                 <a class="navbar-item" href="{{ url_for('produtos') }}">Produtos</a>
@@ -63,6 +66,8 @@
         </div>
     </nav>
 
+
+    
     <div class="notification-panel" style="display: none;">
         <div class="notification-header">
             <strong>Notificações:</strong>
@@ -75,12 +80,10 @@
     <section class="section" style="flex: 1;">
         <div class="container">
             {% block content %}
-            
             {% endblock %}
         </div>
     </section>
 
-   
     <!-- Modal de Notificações -->
     <div id="notification-modal" class="modal">
         <div class="modal-background" onclick="document.getElementById('notification-modal').classList.remove('is-active')"></div>
@@ -97,24 +100,26 @@
     <footer class="footer">
         <p>Sistema desenvolvido por alunos durante a <a href="https://www.sympla.com.br/evento/univest-tech-experience-2024/2666786?share_id=copiarlink">Univest Tech Experience 2024</a>.</p>
         <p>Feito por: equipe Invest.</p>
-      
-    <img src="{{ url_for('static', filename='logo_invest.png') }}" alt="Logo Invest" class="footer-logo">
-</footer>
-
+        <img src="{{ url_for('static', filename='logo_invest.png') }}" alt="Logo Invest" class="footer-logo">
     </footer>
-
 
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Código para alternar o menu hambúrguer
+            // Código para alternar o menu hamburguer
             const navbarBurger = document.querySelector('.navbar-burger');
             const navbarMenu = document.getElementById('navbarMenu');
 
             navbarBurger.addEventListener('click', () => {
                 navbarBurger.classList.toggle('is-active');
                 navbarMenu.classList.toggle('is-active');
+                // Adiciona o X ao abrir o menu
+                if (navbarMenu.classList.contains('is-active')) {
+                    navbarBurger.innerHTML = '&times;'; // Adiciona o X
+                } else {
+                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
+                }
             });
 
             // Fechar o menu ao clicar fora
@@ -122,6 +127,7 @@
                 if (!navbarBurger.contains(event.target) && !navbarMenu.contains(event.target)) {
                     navbarMenu.classList.remove('is-active');
                     navbarBurger.classList.remove('is-active');
+                    navbarBurger.innerHTML = '<span></span><span></span><span></span>'; // Restaura as barras
                 }
             });
         });
@@ -131,4 +137,3 @@
     
 </body>
 </html>
-
