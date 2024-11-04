@@ -1,4 +1,4 @@
-# Sistema de Previsão de Demanda para o Supermercado Garibaldi
+# Sistema de Previsão de Demanda para o Mercado Garibaldi
 
 Bem-vindo ao sistema de previsão de demanda desenvolvido para o _Supermercado Garibaldi_. Este projeto tem como objetivo otimizar a gestão de estoque através da previsão de demanda, minimizando desperdícios e garantindo a disponibilidade de produtos populares para os clientes.
 
